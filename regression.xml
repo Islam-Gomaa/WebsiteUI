@@ -1,0 +1,7 @@
+<suite name="regression">
+    <test name="Chrome">
+        <classes>
+            <class name="tests.LoginTests"/>
+        </classes>
+    </test>
+</suite>
