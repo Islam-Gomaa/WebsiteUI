@@ -22,6 +22,12 @@ public class DriverFactory {
 
                 ChromeOptions chromeOptions = new ChromeOptions();
 
+                // ignore SSL certificate errors
+                chromeOptions.setAcceptInsecureCerts(true);
+                chromeOptions.addArguments("--ignore-certificate-errors");
+                chromeOptions.addArguments("--lang=en");
+                chromeOptions.addArguments("--accept-lang=en-US");
+
                 if (browser.contains("headless")) {
                     chromeOptions.addArguments("--headless");
                     chromeOptions.addArguments("--window-size=1920,1080");
@@ -33,6 +39,9 @@ public class DriverFactory {
             case "headlessfirefox":
 
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
+
+                // ignore SSL certificate errors
+                firefoxOptions.setAcceptInsecureCerts(true);
 
                 if (browser.contains("headless")) {
                     firefoxOptions.addArguments("--headless");

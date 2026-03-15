@@ -12,9 +12,10 @@ public class LoginPage extends ElementActions {
     }
 
     // Locators
-    private final By loginEmail = By.xpath("//input[@data-qa='login-email']");
-    private final By password = By.xpath("//input[@data-qa='login-password']");
-    private final By loginButton = By.xpath("//button[@data-qa='login-button']");
+    private final By logo = By.cssSelector("img[src='/assets/logo_light.D0guCldj.svg'][class*='v-img__img']");
+    private final By loginEmail = By.cssSelector("input[id*='input'][type='text']");
+    private final By password = By.cssSelector("input[id*='input'][type='password']");
+    private final By loginButton = By.cssSelector("button[type='submit'][class*='v-btn']");
 
     // Fluent setters — each returns `this` so calls can be chained
     @Step("Enter Email")
@@ -33,6 +34,11 @@ public class LoginPage extends ElementActions {
     public HomePage clickLoginButton() {
         click(loginButton, 10);
         return new HomePage(driver);
+    }
+
+    @Step("Verify Logo")
+    public boolean isLogoDisplayed() {
+        return isDisplayed(logo, 10);
     }
 
 }

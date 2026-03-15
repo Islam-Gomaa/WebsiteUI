@@ -2,7 +2,7 @@
     <test name="Chrome">
         <parameter name="browser" value="chrome"/>
         <classes>
-            <class name="tests.LoginTests"/>
+            <class name="tests.FeatureGroupTests"/>
         </classes>
     </test>
 </suite>

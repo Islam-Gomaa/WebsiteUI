@@ -5,5 +5,11 @@
       "UserName": "root",
       "Password": "123456"
     }
+  },
+  "FeatureGroup": {
+    "nameAr": "اختبار",
+    "nameEn": "Auto",
+    "editNameAr": "تعديل الاختبار",
+    "editNameEn": "Auto after edit"
   }
 }

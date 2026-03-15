@@ -33,15 +33,15 @@ public class BaseTests {
         driver.get(url);
 
     }
-
-    @AfterMethod
-    public void tearDown() {
-
-        if (driver != null) {
-            driver.quit();
-        }
-
-        System.out.println("Test Finished");
-
-    }
+//
+//    @AfterMethod
+//    public void tearDown() {
+//
+//        if (driver != null) {
+//            driver.quit();
+//        }
+//
+//        System.out.println("Test Finished");
+//
+//    }
 }
