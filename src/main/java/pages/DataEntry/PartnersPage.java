@@ -1,9 +1,9 @@
 package pages.DataEntry;
 
 import org.openqa.selenium.WebDriver;
-import utilities.ElementActions;
+import pages.BasePage;
 
-public class PartnersPage extends ElementActions {
+public class PartnersPage extends BasePage {
 
     public PartnersPage (WebDriver driver) {
         super(driver);

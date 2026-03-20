@@ -31,9 +31,9 @@ public class LoginPage extends ElementActions {
     }
 
     @Step("Click Login Button")
-    public HomePage clickLoginButton() {
+    public BasePage clickLoginButton() {
         click(loginButton, 10);
-        return new HomePage(driver);
+        return new BasePage(driver);
     }
 
     @Step("Verify Logo")

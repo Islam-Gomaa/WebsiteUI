@@ -3,7 +3,10 @@ package utilities;
 import io.qameta.allure.Step;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.List;
 
 public class ElementActions {
@@ -21,15 +24,24 @@ public class ElementActions {
     // ================= ELEMENTS =================
 
     protected WebElement getElement(By locator, int timeout) {
-        return Waits.waitForVisible(driver, locator, timeout);
+        return Waits.waitForPresence(driver, locator, timeout);
     }
 
     protected List<WebElement> getElements(By locator, int timeout) {
         return Waits.waitForAllVisible(driver, locator, timeout);
     }
 
+    public static WebElement waitForPresence(WebDriver driver, By locator, int timeout) {
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
+
+        return wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+
+    }
+
     @Step("Get elements count")
     protected int getElementsCount(By locator, int timeout) {
+
         return getElements(locator, timeout).size();
     }
 
@@ -40,9 +52,16 @@ public class ElementActions {
         Waits.waitForClickable(driver, locator, timeout).click();
     }
 
+    @Step("Double Click element")
+    protected void doubleClick(By locator, int timeout) {
+        WebElement element = getElement(locator, timeout);
+        actions.doubleClick(element).perform();
+    }
+
     @Step("JS Click element")
     protected void jsClick(By locator, int timeout) {
         WebElement element = getElement(locator, timeout);
+        js.executeScript("arguments[0].scrollIntoView({block:'center'});", element);
         js.executeScript("arguments[0].click();", element);
     }
 
@@ -84,8 +103,17 @@ public class ElementActions {
     }
 
     @Step("Clear field")
-    protected void clear(By locator, int timeout) {
-        getElement(locator, timeout).clear();
+    protected void clear(By locator) {
+        getElement(locator, 10).clear();
+    }
+
+
+    @Step("Upload file: {filePath}")
+    protected void uploadFile(By locator, String filePath) {
+
+        WebElement element = getElement(locator, 10);
+
+        element.sendKeys(filePath);
     }
 
     // ================= GET DATA =================
@@ -148,12 +176,8 @@ public class ElementActions {
 
     @Step("Hover over element")
     protected void hover(By locator, int timeout) {
-        actions.moveToElement(getElement(locator, timeout)).perform();
-    }
 
-    @Step("Double click element")
-    protected void doubleClick(By locator, int timeout) {
-        actions.doubleClick(getElement(locator, timeout)).perform();
+        actions.moveToElement(getElement(locator, timeout)).perform();
     }
 
     @Step("Right click element")
