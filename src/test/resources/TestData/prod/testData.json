@@ -2,7 +2,6 @@
   "Login": {
     "validCredentials": {
       "Email": "root@wakeb.com",
-      "UserName": "root",
       "Password": "123456"
     }
   }

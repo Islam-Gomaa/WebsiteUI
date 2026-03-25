@@ -3,9 +3,8 @@ package tests;
 import base.BaseTests;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.BasePage;
-import pages.DataEntry.UseCasesPage;
-import pages.HomePage;
+import pages.admin.BasePage;
+import pages.admin.DataEntry.UseCasesPage;
 import utilities.AuthHelper;
 import utils.Assertions;
 
@@ -117,6 +116,20 @@ public class UseCasesTests extends BaseTests {
         Assertions.myAssertEquals(
                 basePage.getSuccessMessage(),
                 "Deleted successfully"
+        );
+    }
+
+    @Test(priority = 6)
+    public void verifyAfterDeleteUseCaseTest() {
+
+        useCasesPage = basePage.openUseCases();
+        useCasesPage
+                .searchInputs(dataModel().UseCases.editTitleEN);
+
+        // assertion on control panel
+        Assertions.myAssertEquals(
+                basePage.getNoDataAvailableMessage(),
+                "No data available"
         );
     }
 }

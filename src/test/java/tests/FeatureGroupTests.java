@@ -3,9 +3,9 @@ package tests;
 import base.BaseTests;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.BasePage;
+import pages.admin.BasePage;
 import utilities.AuthHelper;
-import pages.DataEntry.FeatureGroupPage;
+import pages.admin.DataEntry.FeatureGroupPage;
 import utils.Assertions;
 
 import static dataReader.ReadDataFromJson.dataModel;
@@ -16,7 +16,8 @@ public class FeatureGroupTests extends BaseTests {
     FeatureGroupPage featureGroupPage;
 
     @BeforeMethod
-    public void login() {
+    public void setupAdminSession() {
+        openAdmin();
         basePage = AuthHelper.login(driver);
     }
 
@@ -31,7 +32,7 @@ public class FeatureGroupTests extends BaseTests {
                 .enterEnglishName(dataModel().FeatureGroup.nameEN)
                 .clickSubmit();
 
-
+        // assertion on control panel
         Assertions.myAssertTrue(
                 basePage.isSuccessIconDisplayed()
                         && basePage.isSuccessMessageDisplayed(),
@@ -51,6 +52,7 @@ public class FeatureGroupTests extends BaseTests {
         featureGroupPage
                 .searchInputs(dataModel().FeatureGroup.nameEN);
 
+        // assertion on control panel
         Assertions.myAssertEquals(
                 basePage.getTableSearchResult(),
                 dataModel().FeatureGroup.nameEN
@@ -69,14 +71,15 @@ public class FeatureGroupTests extends BaseTests {
                 .enterEnglishName(dataModel().FeatureGroup.editNameEN)
                 .clickSubmit();
 
+        // assertion on control panel
         Assertions.myAssertTrue(
-                featureGroupPage.isSuccessIconDisplayed()
-                        && featureGroupPage.isSuccessMessageDisplayed(),
+                basePage.isSuccessIconDisplayed()
+                        && basePage.isSuccessMessageDisplayed(),
                 "Success popup is not displayed correctly"
         );
 
         Assertions.myAssertEquals(
-                featureGroupPage.getSuccessMessage(),
+                basePage.getSuccessMessage(),
                 "Updated successfully"
         );
     }
@@ -88,9 +91,9 @@ public class FeatureGroupTests extends BaseTests {
         featureGroupPage
                 .searchInputs(dataModel().FeatureGroup.editNameEN);
 
-
+        // assertion on control panel
         Assertions.myAssertEquals(
-                featureGroupPage.getTableSearchResult(),
+                basePage.getTableSearchResult(),
                 dataModel().FeatureGroup.editNameEN
         );
     }
@@ -104,15 +107,30 @@ public class FeatureGroupTests extends BaseTests {
                 .clickSearchResult()
                 .clickDeleteFeature();
 
+        // assertion on control panel
         Assertions.myAssertTrue(
-                featureGroupPage.isSuccessIconDisplayed()
-                        && featureGroupPage.isSuccessMessageDisplayed(),
+                basePage.isSuccessIconDisplayed()
+                        && basePage.isSuccessMessageDisplayed(),
                 "Success popup is not displayed correctly"
         );
 
         Assertions.myAssertEquals(
-                featureGroupPage.getSuccessMessage(),
+                basePage.getSuccessMessage(),
                 "Deleted successfully"
+        );
+    }
+
+    @Test(priority = 6)
+    public void verifyAfterDeleteFeatureGroupTest() {
+
+        featureGroupPage = basePage.openFeatureGroup();
+        featureGroupPage
+                .searchInputs(dataModel().FeatureGroup.editNameEN);
+
+        // assertion on control panel
+        Assertions.myAssertEquals(
+                basePage.getNoDataAvailableMessage(),
+                "No data available"
         );
     }
 }

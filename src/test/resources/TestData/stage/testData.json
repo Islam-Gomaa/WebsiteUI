@@ -2,7 +2,6 @@
   "Login": {
     "validCredentials": {
       "Email": "root@wakeb.com",
-      "UserName": "root",
       "Password": "123456"
     }
   },
@@ -21,5 +20,31 @@
     "imageEN": "useCaseImg.webp",
     "editTitleAR": "اختبار تعديل - قطاع النقل والخدمات اللوجستية",
     "editTitleEN": "Test edit - Transportation and Logistic"
+  },
+  "Category": {
+    "titleAr": "الأمن السيبراني",
+    "titleEn": "Cyber Security",
+    "descriptionAr": "قسم خاص بحماية الأنظمة والشبكات من الهجمات الإلكترونية",
+    "descriptionEn": "Category focused on protecting systems and networks from cyber threats",
+    "mainCategory": "Auto",
+    "icon": "categoryImg.jpg",
+    "nameArSEO": "الأمن-السيبراني",
+    "nameEnSEO": "cyber-security",
+    "descriptionArSEO": "كل ما يتعلق بالأمن السيبراني وحماية البيانات",
+    "descriptionEnSEO": "Everything related to cybersecurity and data protection",
+    "keywords": " cyber security",
+    "editTitleAr": "الأمن السيبراني المتقدم",
+    "editTitleEn": "Advanced Cyber Security",
+    "editNameArSEO": "الأمن-السيبراني-المتقدم",
+    "editNameEnSEO": "advanced-cyber-security",
+    "editDescriptionArSEO": "تحديث لقسم الأمن السيبراني",
+    "editDescriptionEnSEO": "Updated cybersecurity category description"
+  },
+  "Clients": {
+    "nameAR": "عميل اختبار",
+    "nameEN": "client_auto created",
+    "logo": "clientLogo.png",
+    "editNameAR": "عميل معدل",
+    "editNameEN": "client_updated"
   }
 }

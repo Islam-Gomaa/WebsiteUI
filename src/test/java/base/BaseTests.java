@@ -28,10 +28,17 @@ public class BaseTests {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
         // open base url
-        String url = ConfigReader.get("baseUrl");
+//        String url = ConfigReader.get("baseUrl");
+//        driver.get(url);
 
-        driver.get(url);
+    }
 
+    protected void openAdmin() {
+        driver.get(ConfigReader.get("admin.url"));
+    }
+
+    protected void openWebsite() {
+        driver.get(ConfigReader.get("website.url"));
     }
 //
 //    @AfterMethod
