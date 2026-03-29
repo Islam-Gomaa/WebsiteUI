@@ -7,5 +7,6 @@ public class DataModel {
     public UseCases UseCases;
     public Category Category;
     public Clients Clients;
+    public Partners Partners;
 
 }

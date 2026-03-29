@@ -4,24 +4,24 @@ import base.BaseTests;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.admin.BasePage;
-import pages.admin.DataEntry.ClientsPage;
+import pages.admin.DataEntry.PartnersPage;
 import pages.website.HomePage;
 import utilities.AuthHelper;
 import utils.Assertions;
 
 import static dataReader.ReadDataFromJson.dataModel;
 
-public class ClientsTests extends BaseTests {
+public class PartnersTests extends BaseTests {
 
     BasePage basePage;
-    ClientsPage clientsPage;
+    PartnersPage partnersPage;
     HomePage homePage;
 
     private String logoSrc;
 
     private String openClientAndGetLogo() {
-        clientsPage.clickSearchResult();
-        return clientsPage.getUploadedLogoSrc();
+        partnersPage.clickSearchResult();
+        return partnersPage.getUploadedLogoSrc();
     }
 
     @BeforeMethod
@@ -31,17 +31,18 @@ public class ClientsTests extends BaseTests {
     }
 
     @Test(priority = 1)
-    public void addClientTest(){
+    public void addPartnerTest(){
 
         // ====== Control Panel ======
 
-        clientsPage = basePage.openClients();
+        partnersPage = basePage.openPartners();
 
-        clientsPage
+        partnersPage
                 .clickAddButton()
-                .enterArabicName(dataModel().Clients.nameAR)
-                .enterEnglishName(dataModel().Clients.nameEN)
-                .uploadLogo(System.getProperty("user.dir")+ "/src/test/resources/images/" + dataModel().Clients.logo)
+                .enterArabicName(dataModel().Partners.nameAR)
+                .enterEnglishName(dataModel().Partners.nameEN)
+                .selectFieldDDL(dataModel().Partners.field)
+                .uploadLogo(System.getProperty("user.dir")+ "/src/test/resources/images/" + dataModel().Partners.logo)
                 .clickSubmit();
 
         Assertions.myAssertTrue(
@@ -56,17 +57,17 @@ public class ClientsTests extends BaseTests {
     }
 
     @Test(priority = 2)
-    public void verifyAfterAddClientTest() {
+    public void verifyAfterAddPartnerTest() {
 
         // ====== Control Panel ======
 
-        clientsPage = basePage.openClients();
-        clientsPage
-                .searchInputs(dataModel().Clients.nameEN);
+        partnersPage = basePage.openPartners();
+        partnersPage
+                .searchInputs(dataModel().Partners.nameEN);
 
         Assertions.myAssertEquals(
                 basePage.getTableSearchResult(),
-                dataModel().Clients.nameEN);
+                dataModel().Partners.nameEN);
 
         logoSrc = openClientAndGetLogo();
 
@@ -78,23 +79,23 @@ public class ClientsTests extends BaseTests {
         homePage = new HomePage(driver);
 
         Assertions.myAssertTrue(
-                homePage.isClientLogoDisplayed(logoSrc),
+                homePage.isPartnerImageDisplayed(logoSrc),
                 "Client is not displayed on website");
     }
 
     @Test(priority = 3)
-    public void editClientTest() {
+    public void editPartnerTest() {
 
         // ====== Control Panel ======
 
-        clientsPage = basePage.openClients();
-        clientsPage
-                .searchInputs(dataModel().Clients.nameEN)
+        partnersPage = basePage.openPartners();
+        partnersPage
+                .searchInputs(dataModel().Partners.nameEN)
                 .clickSearchResult()
                 .clickEditFeature()
-                .enterArabicName(dataModel().Clients.editNameAR)
-                .enterEnglishName(dataModel().Clients.editNameEN)
-                .uploadLogo(System.getProperty("user.dir")+ "/src/test/resources/images/" + dataModel().Clients.logo)
+                .enterArabicName(dataModel().Partners.editNameAR)
+                .enterEnglishName(dataModel().Partners.editNameEN)
+                .uploadLogo(System.getProperty("user.dir")+ "/src/test/resources/images/" + dataModel().Partners.logo)
                 .clickSubmit();
 
         Assertions.myAssertTrue(
@@ -109,17 +110,17 @@ public class ClientsTests extends BaseTests {
     }
 
     @Test(priority = 4)
-    public void verifyAfterEditClientTest() {
+    public void verifyAfterEditPartnerTest() {
 
         // ====== Control Panel ======
 
-        clientsPage = basePage.openClients();
-        clientsPage
-                .searchInputs(dataModel().Clients.editNameEN);
+        partnersPage = basePage.openPartners();
+        partnersPage
+                .searchInputs(dataModel().Partners.editNameEN);
 
         Assertions.myAssertEquals(
                 basePage.getTableSearchResult(),
-                dataModel().Clients.editNameEN);
+                dataModel().Partners.editNameEN);
 
         logoSrc = openClientAndGetLogo();
 
@@ -131,18 +132,18 @@ public class ClientsTests extends BaseTests {
         homePage = new HomePage(driver);
 
         Assertions.myAssertTrue(
-                homePage.isClientLogoDisplayed(logoSrc),
+                homePage.isPartnerImageDisplayed(logoSrc),
                 "Client is not displayed on website");
     }
 
     @Test(priority = 5)
-    public void deleteClientTest() {
+    public void deletePartnerTest() {
 
         // ====== Control Panel ======
 
-        clientsPage = basePage.openClients();
-        clientsPage
-                .searchInputs(dataModel().Clients.editNameEN)
+        partnersPage = basePage.openPartners();
+        partnersPage
+                .searchInputs(dataModel().Partners.editNameEN)
                 .clickSearchResult()
                 .clickDeleteFeature();
 
@@ -158,13 +159,13 @@ public class ClientsTests extends BaseTests {
     }
 
     @Test(priority = 6)
-    public void verifyAfterDeleteClientTest() {
+    public void verifyAfterDeletePartnerTest() {
 
         // ====== Control Panel ======
 
-        clientsPage = basePage.openClients();
-        clientsPage
-                .searchInputs(dataModel().Clients.editNameEN);
+        partnersPage = basePage.openPartners();
+        partnersPage
+                .searchInputs(dataModel().Partners.editNameEN);
 
 
         Assertions.myAssertEquals(
@@ -180,8 +181,8 @@ public class ClientsTests extends BaseTests {
         homePage = new HomePage(driver);
 
         Assertions.myAssertTrue(
-                homePage.isClientLogoNotDisplayed(logoSrc),
-                "Client is still displayed on website ❌");
+                homePage.isPartnerLogoNotDisplayed(logoSrc),
+                "Partner is still displayed on website ❌");
     }
 }
 

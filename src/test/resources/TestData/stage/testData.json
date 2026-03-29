@@ -46,5 +46,13 @@
     "logo": "clientLogo.png",
     "editNameAR": "عميل معدل",
     "editNameEN": "client_updated"
+  },
+  "Partners": {
+    "nameAR": "شريك اختبار",
+    "nameEN": "partner_auto created",
+    "field" : "Digital",
+    "logo": "partnerLogo.png",
+    "editNameAR": "شريك معدل",
+    "editNameEN": "client_updated"
   }
 }
