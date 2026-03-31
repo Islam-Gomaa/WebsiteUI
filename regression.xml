@@ -1,7 +1,7 @@
 <suite name="regression">
     <test name="Chrome">
         <classes>
-            <class name="tests.PartnersTests"/>
+            <class name="tests.CategoryTests"/>
         </classes>
     </test>
 </suite>

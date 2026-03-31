@@ -8,5 +8,8 @@ public class DataModel {
     public Category Category;
     public Clients Clients;
     public Partners Partners;
+    public Blogs Blogs;
+
+
 
 }

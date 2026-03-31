@@ -3,6 +3,7 @@ package pages.admin;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import pages.admin.Blogs.BlogsPage;
 import pages.website.ServicesAndSolutionsPage;
 import pages.admin.DataEntry.*;
 import utilities.ElementActions;
@@ -30,6 +31,8 @@ public class BasePage<T extends BasePage<T>> extends ElementActions {
     private final By category = By.xpath("//span[normalize-space()='Category']");
     private final By clients = By.xpath("//span[normalize-space()='Clients']");
     private final By partners = By.xpath("//span[normalize-space()='Partners']");
+    private final By blogs = By.xpath("//span[@class='ms-2 sub_link'][normalize-space()='Blogs'] ");
+    private final By subBlogs = By.xpath("//span[@class='ms-3'][normalize-space()='Blogs'] ");
     private final By solutionsAndServices = By.cssSelector("a[aria-label='Solutions and Services'][class='link']");
 
 
@@ -144,6 +147,13 @@ public class BasePage<T extends BasePage<T>> extends ElementActions {
         click(dataEntry,10);
         click(partners,10);
         return new PartnersPage(driver);
+    }
+
+    @Step("Open Blogs Page")
+    public BlogsPage openBlogs() {
+        click(blogs,10);
+        click(subBlogs,10);
+        return new BlogsPage(driver);
     }
 
     // Website pages

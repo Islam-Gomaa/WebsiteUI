@@ -19,11 +19,6 @@ public class ClientsTests extends BaseTests {
 
     private String logoSrc;
 
-    private String openClientAndGetLogo() {
-        clientsPage.clickSearchResult();
-        return clientsPage.getUploadedLogoSrc();
-    }
-
     @BeforeMethod
     public void setupAdminSession() {
         openAdmin();
@@ -68,9 +63,7 @@ public class ClientsTests extends BaseTests {
                 basePage.getTableSearchResult(),
                 dataModel().Clients.nameEN);
 
-        logoSrc = openClientAndGetLogo();
-
-        System.out.println("LOGO SRC = " + logoSrc);
+        logoSrc = clientsPage.openClientAndGetLogo();
 
         // ====== Website ======
 
@@ -121,9 +114,7 @@ public class ClientsTests extends BaseTests {
                 basePage.getTableSearchResult(),
                 dataModel().Clients.editNameEN);
 
-        logoSrc = openClientAndGetLogo();
-
-        System.out.println("LOGO SRC = " + logoSrc);
+        logoSrc = clientsPage.openClientAndGetLogo();
 
         // ====== Website ======
 

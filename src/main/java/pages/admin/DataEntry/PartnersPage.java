@@ -70,5 +70,10 @@ public class PartnersPage extends BasePage<PartnersPage> {
             }
         });
     }
+    @Step("Open partner and get logo")
+    public String openPartnersAndGetLogo() {
+        clickSearchResult();
+        return getUploadedLogoSrc();
+    }
 
 }

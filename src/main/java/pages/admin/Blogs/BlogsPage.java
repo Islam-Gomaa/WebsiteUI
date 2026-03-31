@@ -17,21 +17,18 @@ public class BlogsPage extends BasePage<BlogsPage> {
     }
 
     // Locators
-    private final By titleArabic = By.cssSelector("input[placeholder='Enter  title in arabic']");
-    private final By titleEnglish = By.cssSelector("input[placeholder='Enter title in English']");
-    private final By categoryTypeDDL = By.cssSelector("textarea[class='v-field__input'][placeholder='Enter description in AR']");
-    private final By categoryDDL = By.cssSelector("textarea[class='v-field__input'][placeholder='Enter description in EN']");
-    private final By sectionsAR = By.cssSelector("[type='select'][updatekey='parent.id'] .v-input .v-input__control");
-    private final By sectionsEN = By.cssSelector("[updatekey='parent.id'] .v-input__control [role='combobox'] .v-field__input");
-    private final By contentAR = By.cssSelector("[type='imageUploader'] input[type='file']");
-    private final By contentEN = By.cssSelector("input[placeholder='Enter title in arabic']");
-    private final By briefAR = By.cssSelector("input[class='v-field__input'][placeholder='Enter Description (Arabic)']");
-    private final By briefEN = By.cssSelector("input[class='v-field__input'][placeholder='Enter Description (English)']");
-    private final By image = By.cssSelector("input[placeholder='Enter keywords']");
-    private final By publishBlog = By.cssSelector("input[placeholder='Enter keywords']");
-
-
-
+    private final By titleArabic = By.cssSelector("input[placeholder='Enter title in arabic']");
+    private final By titleEnglish = By.cssSelector("input[placeholder='Enter title in english']");
+    private final By categoryTypeDDL = By.xpath("(//div[@class='v-input__control']//div[@aria-haspopup='listbox'])[1]");
+    private final By categoryDDL = By.xpath("(//div[@class='v-input__control']//div[@aria-haspopup='listbox'])[2]");
+    private final By sectionsAR = By.cssSelector("input[placeholder='Enter sections in AR']");
+    private final By sectionsEN = By.cssSelector("input[placeholder='Enter sections in EN']");
+    private final By contentAR = By.cssSelector("textarea[placeholder='Enter content in AR']");
+    private final By contentEN = By.cssSelector("textarea[placeholder='Enter content in EN']");
+    private final By briefAR = By.cssSelector("textarea[placeholder='Enter brief in AR']");
+    private final By briefEN = By.cssSelector("textarea[placeholder='Enter brief in EN']");
+    private final By image = By.cssSelector("input[type='file']");
+    private final By publishBlog = By.cssSelector("input[id*='checkbox'][aria-label='publish blog']");
 
     // Fluent setters — each returns `this` so calls can be chained
 
@@ -89,7 +86,6 @@ public class BlogsPage extends BasePage<BlogsPage> {
         return this;
     }
 
-
     @Step("Enter Arabic Content")
     public BlogsPage enterArabicContent(String name) {
         getElement(contentAR,10)
@@ -128,9 +124,8 @@ public class BlogsPage extends BasePage<BlogsPage> {
         uploadFile(image, filePath);
         return this;
     }
-
     @Step("Enter keywords")
-    public BlogsPage enterKeyWords() {
+    public BlogsPage clickPublishBlog() {
             click(publishBlog, 10);
         return this;
     }

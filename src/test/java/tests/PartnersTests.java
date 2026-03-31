@@ -19,11 +19,6 @@ public class PartnersTests extends BaseTests {
 
     private String logoSrc;
 
-    private String openClientAndGetLogo() {
-        partnersPage.clickSearchResult();
-        return partnersPage.getUploadedLogoSrc();
-    }
-
     @BeforeMethod
     public void setupAdminSession() {
         openAdmin();
@@ -69,7 +64,7 @@ public class PartnersTests extends BaseTests {
                 basePage.getTableSearchResult(),
                 dataModel().Partners.nameEN);
 
-        logoSrc = openClientAndGetLogo();
+        logoSrc = partnersPage.openPartnersAndGetLogo();
 
         System.out.println("LOGO SRC = " + logoSrc);
 
@@ -122,7 +117,7 @@ public class PartnersTests extends BaseTests {
                 basePage.getTableSearchResult(),
                 dataModel().Partners.editNameEN);
 
-        logoSrc = openClientAndGetLogo();
+        logoSrc = partnersPage.openPartnersAndGetLogo();
 
         System.out.println("LOGO SRC = " + logoSrc);
 
@@ -172,8 +167,6 @@ public class PartnersTests extends BaseTests {
                 basePage.getNoDataAvailableMessage(),
                 "No data available"
         );
-
-        System.out.println("LOGO SRC = " + logoSrc);
 
         // ====== Website ======
 

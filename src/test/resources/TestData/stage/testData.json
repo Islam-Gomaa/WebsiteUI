@@ -22,8 +22,8 @@
     "editTitleEN": "Test edit - Transportation and Logistic"
   },
   "Category": {
-    "titleAr": "الأمن السيبراني",
-    "titleEn": "Cyber Security",
+    "titleAr": "السيبراني",
+    "titleEn": "Cyber",
     "descriptionAr": "قسم خاص بحماية الأنظمة والشبكات من الهجمات الإلكترونية",
     "descriptionEn": "Category focused on protecting systems and networks from cyber threats",
     "mainCategory": "Auto",

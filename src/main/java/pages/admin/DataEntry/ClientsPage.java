@@ -19,8 +19,6 @@ public class ClientsPage extends BasePage<ClientsPage> {
     private final By logo = By.cssSelector("[type='imageUploader'][placeholder='Enter logo'] input[type='file']");
     private final By uploadedLogoName = By.cssSelector(".file-name");
 
-
-
     // Fluent setters — each returns `this` so calls can be chained
     @Step("Enter Arabic Name")
     public ClientsPage enterArabicName(String name) {
@@ -58,6 +56,12 @@ public class ClientsPage extends BasePage<ClientsPage> {
                 return null;
             }
         });
+    }
+
+    @Step("Open client and get logo")
+    public String openClientAndGetLogo() {
+        clickSearchResult();
+        return getUploadedLogoSrc();
     }
 
 }
