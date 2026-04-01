@@ -53,6 +53,20 @@
     "field" : "Digital",
     "logo": "partnerLogo.png",
     "editNameAR": "شريك معدل",
-    "editNameEN": "client_updated"
+    "editNameEN": "partner_updated"
+  },
+  "Blogs":{
+    "titleArabic" : "أهمية الذكاء الاصطناعي في تطوير البرمجيات",
+    "titleEnglish" : "The Importance of AI in Software Development",
+    "categoryTypeNews" : "News",
+    "categoryTypeArticle" : "Article",
+    "category" : "Web Development",
+    "sectionsAR" : "مقدمة في الذكاء الاصطناعي",
+    "sectionsEN" : "Introduction to Artificial Intelligence",
+    "contentAR" : "يعتبر الذكاء الاصطناعي من أهم التقنيات الحديثة التي تساهم في تحسين جودة البرمجيات وزيادة الإنتاجية.",
+    "contentEN" : "Artificial intelligence is one of the most important modern technologies that improves software quality and increases productivity.",
+    "briefAR" : "مقال يوضح دور الذكاء الاصطناعي في تطوير البرمجيات.",
+    "briefEN" : "An article explaining the role of AI in software development.",
+    "image": "blogImage.png"
   }
 }

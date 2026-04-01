@@ -19,10 +19,6 @@ public class BlogsTests extends BaseTests {
 
     private String logoSrc;
 
-//    private String openClientAndGetLogo() {
-//        blogsPage.clickSearchResult();
-//        return blogsPage.getUploadedLogoSrc();
-//    }
 
     @BeforeMethod
     public void setupAdminSession() {
@@ -39,19 +35,19 @@ public class BlogsTests extends BaseTests {
 
         blogsPage
                 .clickAddButton()
-                .enterArabicTitle(dataModel().Partners.nameAR)
-                .enterEnglishTitle(dataModel().Partners.nameEN)
-                .selectCategoryTypeDDL(dataModel().Partners.field)
-                .selectCategoryDDL(dataModel().Partners.field)
-                .enterArabicSections(dataModel().Partners.field)
-                .enterEnglishSections(dataModel().Partners.field)
-                .enterArabicContent(dataModel().Partners.field)
-                .enterEnglishContent(dataModel().Partners.field)
-                .enterArabicBrief(dataModel().Partners.field)
-                .enterEnglishBrief(dataModel().Partners.field)
-                .uploadImage(System.getProperty("user.dir")+ "/src/test/resources/images/" + dataModel().Partners.logo)
+                .enterArabicTitle(dataModel().Blogs.titleArabic)
+                .enterEnglishTitle(dataModel().Blogs.titleEnglish)
+                .selectCategoryTypeDDL(dataModel().Blogs.categoryTypeNews)
+                .selectCategoryDDL(dataModel().Blogs.category)
+                .enterArabicSections(dataModel().Blogs.sectionsAR)
+                .enterEnglishSections(dataModel().Blogs.sectionsEN)
+                .enterArabicContent(dataModel().Blogs.contentAR)
+                .enterEnglishContent(dataModel().Blogs.contentEN)
+                .enterArabicBrief(dataModel().Blogs.briefAR)
+                .enterEnglishBrief(dataModel().Blogs.briefEN)
+                .uploadImage(System.getProperty("user.dir")+ "/src/test/resources/images/" + dataModel().Blogs.image)
                 .clickPublishBlog()
-                .clickSubmit();
+                .clickAddBlog();
 
         Assertions.myAssertTrue(
                 basePage.isSuccessIconDisplayed()
@@ -64,32 +60,30 @@ public class BlogsTests extends BaseTests {
         );
     }
 
-//    @Test(priority = 2)
-//    public void verifyAfterAddNewsTest() {
-//
-//        // ====== Control Panel ======
-//
-//        blogsPage = basePage.openBlogs();
-//        blogsPage
-//                .searchInputs(dataModel().Partners.nameEN);
-//
-//        Assertions.myAssertEquals(
-//                basePage.getTableSearchResult(),
-//                dataModel().Partners.nameEN);
-//
-////        logoSrc = openClientAndGetLogo();
-//
-//        System.out.println("LOGO SRC = " + logoSrc);
-//
-//        // ====== Website ======
-//
-//        openWebsite();
-//        homePage = new HomePage(driver);
-//
-//        Assertions.myAssertTrue(
-//                homePage.isPartnerImageDisplayed(logoSrc),
-//                "Client is not displayed on website");
-//    }
+    @Test(priority = 2)
+    public void verifyAfterAddNewsTest() {
+
+        // ====== Control Panel ======
+
+        blogsPage = basePage.openBlogs();
+        blogsPage
+                .searchInputs(dataModel().Partners.nameEN);
+
+        Assertions.myAssertEquals(
+                basePage.getTableSearchResult(),
+                dataModel().Partners.nameEN);
+
+//        logoSrc = openClientAndGetLogo();
+
+        // ====== Website ======
+
+        openWebsite();
+        homePage = new HomePage(driver);
+
+        Assertions.myAssertTrue(
+                homePage.isPartnerImageDisplayed(logoSrc),
+                "The News is not displayed on website");
+    }
 //
 //    @Test(priority = 3)
 //    public void editNewsTest() {

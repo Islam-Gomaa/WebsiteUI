@@ -29,6 +29,7 @@ public class BlogsPage extends BasePage<BlogsPage> {
     private final By briefEN = By.cssSelector("textarea[placeholder='Enter brief in EN']");
     private final By image = By.cssSelector("input[type='file']");
     private final By publishBlog = By.cssSelector("input[id*='checkbox'][aria-label='publish blog']");
+    private final By addButton = By.cssSelector("[form='myForm'] button[type='submit']");
 
     // Fluent setters — each returns `this` so calls can be chained
 
@@ -124,9 +125,16 @@ public class BlogsPage extends BasePage<BlogsPage> {
         uploadFile(image, filePath);
         return this;
     }
-    @Step("Enter keywords")
+
+    @Step("Click Publish Blog checkbox")
     public BlogsPage clickPublishBlog() {
-            click(publishBlog, 10);
+            jsClick(publishBlog, 30);
+        return this;
+    }
+
+    @Step("Click Add Blog")
+    public BlogsPage clickAddBlog() {
+        click(addButton, 10);
         return this;
     }
 
