@@ -16,6 +16,7 @@ public class BasePage<T extends BasePage<T>> extends ElementActions {
     private final By englishBtn = By.cssSelector("[class*='flex items-center']");
     private final By searchInputs =  By.xpath("(//input[@placeholder='Search'])[2]");
     private final By clearSearchIcon = By.cssSelector(".mdi-close-circle[role='button']");
+    private final By closePopUp = By.cssSelector("button[type='button'][aria-label='Close this dialog']");
     private final By dataTableSearchResult = By.xpath("//tbody[@class='v-data-table__tbody']/tr[1]/td[2]");
     private final By addBtn = By.cssSelector("#teleported-items .flex .v-btn");
     private final By submitBtn = By.cssSelector("button[form='myForm'][type='submit']");
@@ -58,8 +59,8 @@ public class BasePage<T extends BasePage<T>> extends ElementActions {
     }
 
     @Step("Clear Search Inputs")
-    public T clearSearchInputs() {
-        jsClick(clearSearchIcon,10);
+    public T closePopUpIcon() {
+        jsClick(closePopUp,10);
         return self();
     }
 
@@ -67,6 +68,11 @@ public class BasePage<T extends BasePage<T>> extends ElementActions {
     @Step("Click on search result ")
     public T clickSearchResult() {
         click(dataTableSearchResult, 10);
+        return self();
+    }
+    @Step("Clear Search Inputs")
+    public T clearSearchInputs() {
+        jsClick(clearSearchIcon,10);
         return self();
     }
 

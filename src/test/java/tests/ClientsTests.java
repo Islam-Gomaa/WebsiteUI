@@ -28,7 +28,7 @@ public class ClientsTests extends BaseTests {
     @Test(priority = 1)
     public void addAndEditAndDeleteClient(){
 
-        // ====== Control Panel ======
+        // ====== Control Panel ====== add client ======
         clientsPage = basePage.openClients();
         clientsPage
                 .clickAddButton()
@@ -50,7 +50,7 @@ public class ClientsTests extends BaseTests {
         homePage = new HomePage(driver);
         Assertions.myAssertTrue(homePage.isClientLogoDisplayed(logoSrc), "Client is not displayed on website");
 
-        // ====== Control Panel ======
+        // ====== Control Panel ====== edit client ======
         openAdmin();
         clientsPage = basePage.openClients();
         clientsPage
@@ -68,31 +68,31 @@ public class ClientsTests extends BaseTests {
                 .clearSearchInputs()
                 .searchInputs(dataModel().Clients.editNameEN);
         Assertions.myAssertEquals(basePage.getTableSearchResult(), dataModel().Clients.editNameEN);
-//        logoSrc = clientsPage.openClientAndGetLogo();
-//
-//        // ====== Website ======
-//        openWebsite();
-//        homePage = new HomePage(driver);
-//        Assertions.myAssertTrue(homePage.isClientLogoDisplayed(logoSrc), "Client is not displayed on website");
+        logoSrc = clientsPage.openClientAndGetLogo();
 
-//        // ====== Control Panel ======
-//        openAdmin();
-//        clientsPage
-//                .searchInputs(dataModel().Clients.editNameEN)
-//                .clickSearchResult()
-//                .clickDeleteFeature();
-//        Assertions.myAssertTrue(basePage.isSuccessIconDisplayed() && basePage.isSuccessMessageDisplayed(), "Success popup is not displayed correctly");
-//        Assertions.myAssertEquals(basePage.getSuccessMessage(), "Deleted successfully");
-//
-//        clientsPage
-//                .searchInputs(dataModel().Clients.editNameEN);
-//        Assertions.myAssertEquals(basePage.getNoDataAvailableMessage(), "No data available");
-//
-//        // ====== Website ======
-//        openWebsite();
-//        homePage = new HomePage(driver);
-//        Assertions.myAssertTrue(homePage.isClientLogoNotDisplayed(logoSrc), "Client is still displayed on website");
-//
+        // ====== Website ======
+        openWebsite();
+        homePage = new HomePage(driver);
+        Assertions.myAssertTrue(homePage.isClientLogoDisplayed(logoSrc), "Client is not displayed on website");
+
+        // ====== Control Panel ====== delete client ======
+        openAdmin();
+        clientsPage
+                .searchInputs(dataModel().Clients.editNameEN)
+                .clickSearchResult()
+                .clickDeleteFeature();
+        Assertions.myAssertTrue(basePage.isSuccessIconDisplayed() && basePage.isSuccessMessageDisplayed(), "Success popup is not displayed correctly");
+        Assertions.myAssertEquals(basePage.getSuccessMessage(), "Deleted successfully");
+
+        clientsPage
+                .searchInputs(dataModel().Clients.editNameEN);
+        Assertions.myAssertEquals(basePage.getNoDataAvailableMessage(), "No data available");
+
+        // ====== Website ======
+        openWebsite();
+        homePage = new HomePage(driver);
+        Assertions.myAssertTrue(homePage.isClientLogoNotDisplayed(logoSrc), "Client is still displayed on website");
+
     }
 }
 
