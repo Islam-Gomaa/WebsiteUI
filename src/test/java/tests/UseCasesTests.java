@@ -67,7 +67,7 @@ public class UseCasesTests extends BaseTests {
         useCasesPage
                 .searchInputs(dataModel().UseCases.titleEN)
                 .clickSearchResult()
-                .clickEditFeature()
+                .clickEdit()
                 .enterArabicTitle(dataModel().UseCases.editTitleAR)
                 .enterEnglishTitle(dataModel().UseCases.editTitleEN)
                 .clickSubmit();
@@ -105,7 +105,7 @@ public class UseCasesTests extends BaseTests {
         useCasesPage
                 .searchInputs(dataModel().UseCases.editTitleEN)
                 .clickSearchResult()
-                .clickDeleteFeature();
+                .clickDelete();
 
         Assertions.myAssertTrue(
                 basePage.isSuccessIconDisplayed()

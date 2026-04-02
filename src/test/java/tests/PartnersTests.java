@@ -26,7 +26,7 @@ public class PartnersTests extends BaseTests {
     }
 
     @Test(priority = 1)
-    public void addPartnerTest(){
+    public void shouldAddEditAndDeletePartnerSuccessfully() {
 
         // ====== Control Panel ======
 
@@ -37,7 +37,7 @@ public class PartnersTests extends BaseTests {
                 .enterArabicName(dataModel().Partners.nameAR)
                 .enterEnglishName(dataModel().Partners.nameEN)
                 .selectFieldDDL(dataModel().Partners.field)
-                .uploadLogo(System.getProperty("user.dir")+ "/src/test/resources/images/" + dataModel().Partners.logo)
+                .uploadLogo(System.getProperty("user.dir") + "/src/test/resources/images/" + dataModel().Partners.logo)
                 .clickSubmit();
 
         Assertions.myAssertTrue(
@@ -49,15 +49,11 @@ public class PartnersTests extends BaseTests {
                 basePage.getSuccessMessage(),
                 "Created successfully"
         );
-    }
-
-    @Test(priority = 2)
-    public void verifyAfterAddPartnerTest() {
 
         // ====== Control Panel ======
 
-        partnersPage = basePage.openPartners();
         partnersPage
+                .closePopUpIcon()
                 .searchInputs(dataModel().Partners.nameEN);
 
         Assertions.myAssertEquals(
@@ -76,21 +72,19 @@ public class PartnersTests extends BaseTests {
         Assertions.myAssertTrue(
                 homePage.isPartnerImageDisplayed(logoSrc),
                 "Client is not displayed on website");
-    }
-
-    @Test(priority = 3)
-    public void editPartnerTest() {
 
         // ====== Control Panel ======
+
+        openAdmin();
 
         partnersPage = basePage.openPartners();
         partnersPage
                 .searchInputs(dataModel().Partners.nameEN)
                 .clickSearchResult()
-                .clickEditFeature()
+                .clickEdit()
                 .enterArabicName(dataModel().Partners.editNameAR)
                 .enterEnglishName(dataModel().Partners.editNameEN)
-                .uploadLogo(System.getProperty("user.dir")+ "/src/test/resources/images/" + dataModel().Partners.logo)
+                .uploadLogo(System.getProperty("user.dir") + "/src/test/resources/images/" + dataModel().Partners.logo)
                 .clickSubmit();
 
         Assertions.myAssertTrue(
@@ -102,15 +96,12 @@ public class PartnersTests extends BaseTests {
                 basePage.getSuccessMessage(),
                 "Updated successfully"
         );
-    }
-
-    @Test(priority = 4)
-    public void verifyAfterEditPartnerTest() {
 
         // ====== Control Panel ======
 
-        partnersPage = basePage.openPartners();
         partnersPage
+                .closePopUpIcon()
+                .clearSearchInputs()
                 .searchInputs(dataModel().Partners.editNameEN);
 
         Assertions.myAssertEquals(
@@ -129,18 +120,17 @@ public class PartnersTests extends BaseTests {
         Assertions.myAssertTrue(
                 homePage.isPartnerImageDisplayed(logoSrc),
                 "Client is not displayed on website");
-    }
-
-    @Test(priority = 5)
-    public void deletePartnerTest() {
 
         // ====== Control Panel ======
 
+        openAdmin();
+
         partnersPage = basePage.openPartners();
         partnersPage
+                .clearSearchInputs()
                 .searchInputs(dataModel().Partners.editNameEN)
                 .clickSearchResult()
-                .clickDeleteFeature();
+                .clickDelete();
 
         Assertions.myAssertTrue(
                 basePage.isSuccessIconDisplayed()
@@ -151,17 +141,13 @@ public class PartnersTests extends BaseTests {
                 basePage.getSuccessMessage(),
                 "Deleted successfully"
         );
-    }
-
-    @Test(priority = 6)
-    public void verifyAfterDeletePartnerTest() {
 
         // ====== Control Panel ======
 
-        partnersPage = basePage.openPartners();
         partnersPage
+                .closePopUpIcon()
+                .clearSearchInputs()
                 .searchInputs(dataModel().Partners.editNameEN);
-
 
         Assertions.myAssertEquals(
                 basePage.getNoDataAvailableMessage(),
@@ -176,7 +162,12 @@ public class PartnersTests extends BaseTests {
         Assertions.myAssertTrue(
                 homePage.isPartnerLogoNotDisplayed(logoSrc),
                 "Partner is still displayed on website ❌");
+
     }
 }
+
+
+
+
 
 

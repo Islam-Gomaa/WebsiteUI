@@ -66,7 +66,7 @@ public class FeatureGroupTests extends BaseTests {
         featureGroupPage
                 .searchInputs(dataModel().FeatureGroup.nameEN)
                 .clickSearchResult()
-                .clickEditFeature()
+                .clickEdit()
                 .enterArabicName(dataModel().FeatureGroup.editNameAR)
                 .enterEnglishName(dataModel().FeatureGroup.editNameEN)
                 .clickSubmit();
@@ -105,7 +105,7 @@ public class FeatureGroupTests extends BaseTests {
         featureGroupPage
                 .searchInputs(dataModel().FeatureGroup.editNameEN)
                 .clickSearchResult()
-                .clickDeleteFeature();
+                .clickDelete();
 
         // assertion on control panel
         Assertions.myAssertTrue(

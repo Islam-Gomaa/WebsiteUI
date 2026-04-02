@@ -58,46 +58,41 @@ public class BlogsTests extends BaseTests {
                 basePage.getSuccessMessage(),
                 "Created successfully"
         );
-    }
-
-    @Test(priority = 2)
-    public void verifyAfterAddNewsTest() {
-
-        // ====== Control Panel ======
-
-        blogsPage = basePage.openBlogs();
-        blogsPage
-                .searchInputs(dataModel().Partners.nameEN);
-
-        Assertions.myAssertEquals(
-                basePage.getTableSearchResult(),
-                dataModel().Partners.nameEN);
-
-//        logoSrc = openClientAndGetLogo();
-
-        // ====== Website ======
-
-        openWebsite();
-        homePage = new HomePage(driver);
-
-        Assertions.myAssertTrue(
-                homePage.isPartnerImageDisplayed(logoSrc),
-                "The News is not displayed on website");
-    }
+//        // ====== Control Panel ======
 //
-//    @Test(priority = 3)
-//    public void editNewsTest() {
+//        clientsPage
+//                .closePopUpIcon()
+//                .searchInputs(dataModel().Clients.nameEN);
+//
+//        Assertions.myAssertEquals(
+//                basePage.getTableSearchResult(),
+//                dataModel().Clients.nameEN);
+//
+//        logoSrc = clientsPage.openClientAndGetLogo();
+//
+//        System.out.println("LOGO SRC = " + logoSrc);
+//
+//        // ====== Website ======
+//
+//        openWebsite();
+//        homePage = new HomePage(driver);
+//
+//        Assertions.myAssertTrue(
+//                homePage.isClientLogoDisplayed(logoSrc),
+//                "Client is not displayed on website");
 //
 //        // ====== Control Panel ======
 //
-//        blogsPage = basePage.openBlogs();
-//        blogsPage
-//                .searchInputs(dataModel().Partners.nameEN)
+//        openAdmin();
+//
+//        clientsPage = basePage.openClients();
+//        clientsPage
+//                .searchInputs(dataModel().Clients.nameEN)
 //                .clickSearchResult()
 //                .clickEditFeature()
-//                .enterArabicName(dataModel().Partners.editNameAR)
-//                .enterEnglishName(dataModel().Partners.editNameEN)
-//                .uploadLogo(System.getProperty("user.dir")+ "/src/test/resources/images/" + dataModel().Partners.logo)
+//                .enterArabicName(dataModel().Clients.editNameAR)
+//                .enterEnglishName(dataModel().Clients.editNameEN)
+//                .uploadLogo(System.getProperty("user.dir") + "/src/test/resources/images/" + dataModel().Clients.logo)
 //                .clickSubmit();
 //
 //        Assertions.myAssertTrue(
@@ -109,22 +104,19 @@ public class BlogsTests extends BaseTests {
 //                basePage.getSuccessMessage(),
 //                "Updated successfully"
 //        );
-//    }
-//
-//    @Test(priority = 4)
-//    public void verifyAfterEditNewsTest() {
 //
 //        // ====== Control Panel ======
 //
-//        blogsPage = basePage.openBlogs();
-//        blogsPage
-//                .searchInputs(dataModel().Partners.editNameEN);
+//        clientsPage
+//                .closePopUpIcon()
+//                .clearSearchInputs()
+//                .searchInputs(dataModel().Clients.editNameEN);
 //
 //        Assertions.myAssertEquals(
 //                basePage.getTableSearchResult(),
-//                dataModel().Partners.editNameEN);
+//                dataModel().Clients.editNameEN);
 //
-//        logoSrc = openClientAndGetLogo();
+//        logoSrc = clientsPage.openClientAndGetLogo();
 //
 //        System.out.println("LOGO SRC = " + logoSrc);
 //
@@ -134,18 +126,17 @@ public class BlogsTests extends BaseTests {
 //        homePage = new HomePage(driver);
 //
 //        Assertions.myAssertTrue(
-//                homePage.isPartnerImageDisplayed(logoSrc),
+//                homePage.isClientLogoDisplayed(logoSrc),
 //                "Client is not displayed on website");
-//    }
-//
-//    @Test(priority = 5)
-//    public void deleteNewsTest() {
 //
 //        // ====== Control Panel ======
 //
-//        blogsPage = basePage.openBlogs();
-//        blogsPage
-//                .searchInputs(dataModel().Partners.editNameEN)
+//        openAdmin();
+//
+//        clientsPage = basePage.openClients();
+//        clientsPage
+//                .clearSearchInputs()
+//                .searchInputs(dataModel().Clients.editNameEN)
 //                .clickSearchResult()
 //                .clickDeleteFeature();
 //
@@ -158,24 +149,18 @@ public class BlogsTests extends BaseTests {
 //                basePage.getSuccessMessage(),
 //                "Deleted successfully"
 //        );
-//    }
-//
-//    @Test(priority = 6)
-//    public void verifyAfterDeleteNewsTest() {
 //
 //        // ====== Control Panel ======
 //
-//        blogsPage = basePage.openBlogs();
-//        blogsPage
-//                .searchInputs(dataModel().Partners.editNameEN);
-//
+//        clientsPage
+//                .closePopUpIcon()
+//                .clearSearchInputs()
+//                .searchInputs(dataModel().Clients.editNameEN);
 //
 //        Assertions.myAssertEquals(
 //                basePage.getNoDataAvailableMessage(),
 //                "No data available"
 //        );
-//
-//        System.out.println("LOGO SRC = " + logoSrc);
 //
 //        // ====== Website ======
 //
@@ -183,9 +168,8 @@ public class BlogsTests extends BaseTests {
 //        homePage = new HomePage(driver);
 //
 //        Assertions.myAssertTrue(
-//                homePage.isPartnerLogoNotDisplayed(logoSrc),
-//                "The News is still displayed on website ❌");
-//    }
+//                homePage.isClientLogoNotDisplayed(logoSrc),
+//                "Client is still displayed on website ❌");
+//
+    }
 }
-
-

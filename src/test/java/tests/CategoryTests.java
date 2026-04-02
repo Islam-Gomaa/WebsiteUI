@@ -26,6 +26,7 @@ public class CategoryTests extends BaseTests {
     @Test(priority = 1)
     public void addCategoryTest(){
 
+        // ====== Control Panel ======
         categoryPage = basePage.openCategory();
 
         categoryPage
@@ -42,7 +43,6 @@ public class CategoryTests extends BaseTests {
                 .enterKeyWords(dataModel().Category.keywords)
                 .clickSubmit();
 
-        // Assertion on control panel
         Assertions.myAssertTrue(
                 basePage.isSuccessIconDisplayed()
                         && basePage.isSuccessMessageDisplayed(),
@@ -52,36 +52,31 @@ public class CategoryTests extends BaseTests {
                 basePage.getSuccessMessage(),
                 "Created successfully"
         );
-    }
 
-    @Test(priority = 2)
-    public void verifyAfterAddCategoryTest() {
-
-        categoryPage = basePage.openCategory();
+        // ====== Control Panel ======
         categoryPage
+                .closePopUpIcon()
                 .searchInputs(dataModel().Category.titleEn);
 
-        // Assertion on control panel
         Assertions.myAssertEquals(
                 basePage.getTableSearchResult(),
                 dataModel().Category.titleEn);
 
-        // Assertion on website
+        // ====== Website ======
         openWebsite();
         servicesAndSolutionsPage = basePage.openServicesAndSolutions();
         Assertions.myAssertTrue(
                 servicesAndSolutionsPage.isCategoryDisplayed(dataModel().Category.titleEn),
                 "Category is not displayed on website");
-    }
 
-    @Test(priority = 3)
-    public void editCategoryTest() {
+        // ====== Control Panel ======
 
+        openAdmin();
         categoryPage = basePage.openCategory();
         categoryPage
                 .searchInputs(dataModel().Category.titleEn)
                 .clickSearchResult()
-                .clickEditFeature()
+                .clickEdit()
                 .enterArabicTitle(dataModel().Category.editTitleAr)
                 .enterEnglishTitle(dataModel().Category.editTitleEn)
                 .enterSEOArabicTitle(dataModel().Category.editNameArSEO)
@@ -90,7 +85,6 @@ public class CategoryTests extends BaseTests {
                 .enterSEOEnglishDescription(dataModel().Category.editDescriptionEnSEO)
                 .clickSubmit();
 
-        // Assertion on control panel
         Assertions.myAssertTrue(
                 basePage.isSuccessIconDisplayed()
                         && basePage.isSuccessMessageDisplayed(),
@@ -100,37 +94,30 @@ public class CategoryTests extends BaseTests {
                 basePage.getSuccessMessage(),
                 "Updated successfully"
         );
-    }
 
-    @Test(priority = 4)
-    public void verifyAfterEditCategoryTest() {
-
-        categoryPage = basePage.openCategory();
+        // ====== Control Panel ======
         categoryPage
+                .closePopUpIcon()
                 .searchInputs(dataModel().Category.editTitleEn);
 
-        // Assertion on control panel
         Assertions.myAssertEquals(
                 basePage.getTableSearchResult(),
                 dataModel().Category.editTitleEn);
 
-        // Assertion on website
+        // ====== Website ======
         openWebsite();
         servicesAndSolutionsPage = basePage.openServicesAndSolutions();
         Assertions.myAssertTrue(
                 servicesAndSolutionsPage.isCategoryDisplayed(dataModel().Category.editTitleEn),
                 "Category is not displayed on website");
 
-    }
-
-    @Test(priority = 5)
-    public void deleteCategoryTest() {
-
+        // ====== Control Panel ======
+        openAdmin();
         categoryPage = basePage.openCategory();
         categoryPage
                 .searchInputs(dataModel().Category.editTitleEn)
                 .clickSearchResult()
-                .clickDeleteFeature();
+                .clickDelete();
 
         // Assertion on control panel
         Assertions.myAssertTrue(
@@ -142,13 +129,13 @@ public class CategoryTests extends BaseTests {
                 basePage.getSuccessMessage(),
                 "Deleted successfully"
         );
-    }
 
-    @Test(priority = 6)
-    public void verifyAfterDeleteCategoryTest() {
+        // ====== Control Panel ======
 
         categoryPage = basePage.openCategory();
         categoryPage
+                .closePopUpIcon()
+                .clearSearchInputs()
                 .searchInputs(dataModel().Category.editTitleEn);
 
         // assertion on control panel

@@ -26,9 +26,10 @@ public class ClientsTests extends BaseTests {
     }
 
     @Test(priority = 1)
-    public void addAndEditAndDeleteClient(){
+    public void shouldAddEditAndDeleteClientSuccessfully() {
 
-        // ====== Control Panel ====== add client ======
+        // ====== Control Panel ======
+
         clientsPage = basePage.openClients();
         clientsPage
                 .clickAddButton()
@@ -37,63 +38,135 @@ public class ClientsTests extends BaseTests {
                 .uploadLogo(System.getProperty("user.dir")+ "/src/test/resources/images/" + dataModel().Clients.logo)
                 .clickSubmit();
 
-        Assertions.myAssertTrue(basePage.isSuccessIconDisplayed() && basePage.isSuccessMessageDisplayed(), "Success popup is not displayed correctly");
-        Assertions.myAssertEquals(basePage.getSuccessMessage(), "Created successfully");
+
+        Assertions.myAssertTrue(
+                basePage.isSuccessIconDisplayed()
+                        && basePage.isSuccessMessageDisplayed(),
+                "Success popup is not displayed correctly"
+        );
+        Assertions.myAssertEquals(
+                basePage.getSuccessMessage(),
+                "Created successfully"
+        );
+
+        // ====== Control Panel ======
 
         clientsPage
+                .closePopUpIcon()
                 .searchInputs(dataModel().Clients.nameEN);
-        Assertions.myAssertEquals(basePage.getTableSearchResult(), dataModel().Clients.nameEN);
+
+        Assertions.myAssertEquals(
+                basePage.getTableSearchResult(),
+                dataModel().Clients.nameEN);
+
         logoSrc = clientsPage.openClientAndGetLogo();
 
+        System.out.println("LOGO SRC = " + logoSrc);
+
         // ====== Website ======
+
         openWebsite();
         homePage = new HomePage(driver);
-        Assertions.myAssertTrue(homePage.isClientLogoDisplayed(logoSrc), "Client is not displayed on website");
 
-        // ====== Control Panel ====== edit client ======
+        Assertions.myAssertTrue(
+                homePage.isClientLogoDisplayed(logoSrc),
+                "Client is not displayed on website");
+
+        // ====== Control Panel ======
+
         openAdmin();
+
         clientsPage = basePage.openClients();
         clientsPage
                 .searchInputs(dataModel().Clients.nameEN)
                 .clickSearchResult()
-                .clickEditFeature()
+                .clickEdit()
                 .enterArabicName(dataModel().Clients.editNameAR)
                 .enterEnglishName(dataModel().Clients.editNameEN)
-                .uploadLogo(System.getProperty("user.dir")+ "/src/test/resources/images/" + dataModel().Clients.logo)
+                .uploadLogo(System.getProperty("user.dir") + "/src/test/resources/images/" + dataModel().Clients.logo)
                 .clickSubmit();
-        Assertions.myAssertTrue(basePage.isSuccessIconDisplayed() && basePage.isSuccessMessageDisplayed(), "Success popup is not displayed correctly");
-        Assertions.myAssertEquals(basePage.getSuccessMessage(), "Updated successfully");
+
+        Assertions.myAssertTrue(
+                basePage.isSuccessIconDisplayed()
+                        && basePage.isSuccessMessageDisplayed(),
+                "Success popup is not displayed correctly"
+        );
+        Assertions.myAssertEquals(
+                basePage.getSuccessMessage(),
+                "Updated successfully"
+        );
+
+        // ====== Control Panel ======
 
         clientsPage
+                .closePopUpIcon()
                 .clearSearchInputs()
                 .searchInputs(dataModel().Clients.editNameEN);
-        Assertions.myAssertEquals(basePage.getTableSearchResult(), dataModel().Clients.editNameEN);
+
+        Assertions.myAssertEquals(
+                basePage.getTableSearchResult(),
+                dataModel().Clients.editNameEN);
+
         logoSrc = clientsPage.openClientAndGetLogo();
 
+        System.out.println("LOGO SRC = " + logoSrc);
+
         // ====== Website ======
+
         openWebsite();
         homePage = new HomePage(driver);
-        Assertions.myAssertTrue(homePage.isClientLogoDisplayed(logoSrc), "Client is not displayed on website");
 
-        // ====== Control Panel ====== delete client ======
+        Assertions.myAssertTrue(
+                homePage.isClientLogoDisplayed(logoSrc),
+                "Client is not displayed on website");
+
+        // ====== Control Panel ======
+
         openAdmin();
+
+        clientsPage = basePage.openClients();
         clientsPage
+                .clearSearchInputs()
                 .searchInputs(dataModel().Clients.editNameEN)
                 .clickSearchResult()
-                .clickDeleteFeature();
-        Assertions.myAssertTrue(basePage.isSuccessIconDisplayed() && basePage.isSuccessMessageDisplayed(), "Success popup is not displayed correctly");
-        Assertions.myAssertEquals(basePage.getSuccessMessage(), "Deleted successfully");
+                .clickDelete();
+
+        Assertions.myAssertTrue(
+                basePage.isSuccessIconDisplayed()
+                        && basePage.isSuccessMessageDisplayed(),
+                "Success popup is not displayed correctly"
+        );
+        Assertions.myAssertEquals(
+                basePage.getSuccessMessage(),
+                "Deleted successfully"
+        );
+
+        // ====== Control Panel ======
 
         clientsPage
+                .closePopUpIcon()
+                .clearSearchInputs()
                 .searchInputs(dataModel().Clients.editNameEN);
-        Assertions.myAssertEquals(basePage.getNoDataAvailableMessage(), "No data available");
+
+        Assertions.myAssertEquals(
+                basePage.getNoDataAvailableMessage(),
+                "No data available"
+        );
 
         // ====== Website ======
+
         openWebsite();
         homePage = new HomePage(driver);
-        Assertions.myAssertTrue(homePage.isClientLogoNotDisplayed(logoSrc), "Client is still displayed on website");
+
+        Assertions.myAssertTrue(
+                homePage.isClientLogoNotDisplayed(logoSrc),
+                "Client is still displayed on website ❌");
 
     }
 }
+
+
+
+
 
 

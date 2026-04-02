@@ -91,7 +91,7 @@ public class BasePage<T extends BasePage<T>> extends ElementActions {
 
     @SuppressWarnings("UnusedReturnValue")
     @Step("Click Edit Btn")
-    public T clickEditFeature() {
+    public T clickEdit() {
         getElements(editBtn,10).get(0).click();
         return self();
     }
@@ -103,7 +103,7 @@ public class BasePage<T extends BasePage<T>> extends ElementActions {
 
     @SuppressWarnings("UnusedReturnValue")
     @Step("Click Delete Btn")
-    public void clickDeleteFeature() {
+    public void clickDelete() {
         getElements(deleteBtn,10).get(1).click();
     }
 
