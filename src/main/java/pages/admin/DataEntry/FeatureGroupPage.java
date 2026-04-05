@@ -20,17 +20,17 @@ public class FeatureGroupPage extends BasePage<FeatureGroupPage> {
 
     @Step("Enter Arabic Name")
     public FeatureGroupPage enterArabicName(String name) {
-        getElement(nameArabic,10)
+        getElement(nameArabic)
                 .sendKeys(Keys.chord(Keys.CONTROL,"a"), Keys.DELETE);
-        sendKeys(nameArabic,10,name);
+        sendKeys(nameArabic,name);
         return this;
     }
 
     @Step("Enter English Name")
     public FeatureGroupPage enterEnglishName(String name) {
-        getElement(nameEnglish,10)
+        getElement(nameEnglish)
                 .sendKeys(Keys.chord(Keys.CONTROL,"a"), Keys.DELETE);
-        sendKeys(nameEnglish,10,name);
+        sendKeys(nameEnglish,name);
         return this;
     }
 

@@ -23,9 +23,9 @@ public class ServicesAndSolutionsPage extends BasePage<ServicesAndSolutionsPage>
         By locator = categoryCard(name);
         int maxScrolls = 10;
         for (int i = 0; i < maxScrolls; i++) {
-            if (waitForElementShort(locator, 2)) {
-                scrollToElement(locator, 5);
-                return isDisplayed(locator, 5);
+            if (isElementDisplayed(locator)) {
+                scrollToElement(locator);
+                return isElementDisplayed(locator);
             }
             scrollBy(0, 500);
         }

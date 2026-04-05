@@ -3,13 +3,8 @@ package utilities;
 import io.qameta.allure.Step;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.Wait;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.JavascriptExecutor;
 
-import java.time.Duration;
 import java.util.List;
 
 public class ElementActions {
@@ -26,89 +21,63 @@ public class ElementActions {
 
     // ================= ELEMENTS =================
 
-    protected WebElement getElement(By locator, int timeout) {
-        return Waits.waitForPresence(driver, locator, timeout);
+    protected WebElement getElement(By locator) {
+        return Waits.waitForPresence(driver, locator);
     }
 
-    protected List<WebElement> getElements(By locator, int timeout) {
-        return Waits.waitForAllVisible(driver, locator, timeout);
+    protected List<WebElement> getElements(By locator) {
+        return Waits.waitForAllVisible(driver, locator);
     }
 
-    protected boolean waitForElementShort(By locator, int timeout) {
+    protected boolean isElementDisplayed(By locator) {
         try {
-            return waitForVisibility(locator, timeout).isDisplayed();
-        } catch (Exception e) {
+            return Waits.waitForVisible(driver, locator).isDisplayed();
+        } catch (NoSuchElementException | TimeoutException e) {
             return false;
         }
     }
 
-    private static Wait<WebDriver> buildWait(WebDriver driver, int timeout) {
-        return new FluentWait<>(driver)
-                .withTimeout(Duration.ofSeconds(timeout))
-                .pollingEvery(Duration.ofMillis(100))
-                .ignoring(NoSuchElementException.class)
-                .ignoring(StaleElementReferenceException.class);
+    protected WebElement waitForVisibility(By locator) {
+        return Waits.waitForVisible(driver, locator);
     }
 
-    protected WebElement waitForVisibility(By locator, int timeout) {
-        return buildWait(driver, timeout)
-                .until(ExpectedConditions.visibilityOfElementLocated(locator));
-    }
-
-    protected WebElement waitForPresence(By locator, int timeout) {
-        return buildWait(driver, timeout)
-                .until(ExpectedConditions.presenceOfElementLocated(locator));
-    }
-
-    public static List<WebElement> waitForAllVisible(WebDriver driver, By locator, int timeout) {
-
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
-
-        return wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
-    }
-
-    public static List<WebElement> waitForAllPresence(WebDriver driver, By locator, int timeout) {
-
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
-
-        return wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(locator));
+    protected WebElement waitForPresence(By locator) {
+        return Waits.waitForPresence(driver, locator);
     }
 
     @Step("Get elements count")
-    protected int getElementsCount(By locator, int timeout) {
-
-        return getElements(locator, timeout).size();
+    protected int getElementsCount(By locator) {
+        return getElements(locator).size();
     }
 
     // ================= CLICK =================
 
     @Step("Click element")
-    protected void click(By locator, int timeout) {
-        Waits.waitForClickable(driver, locator, timeout).click();
+    protected void click(By locator) {
+        Waits.waitForClickable(driver, locator).click();
     }
 
     @Step("Double Click element")
-    protected void doubleClick(By locator, int timeout) {
-        WebElement element = getElement(locator, timeout);
+    protected void doubleClick(By locator) {
+        WebElement element = getElement(locator);
         actions.doubleClick(element).perform();
     }
 
     @Step("JS Click element")
-    protected void jsClick(By locator, int timeout) {
-        WebElement element = getElement(locator, timeout);
+    protected void jsClick(By locator) {
+        WebElement element = getElement(locator);
         js.executeScript("arguments[0].scrollIntoView({block:'center'});", element);
         js.executeScript("arguments[0].click();", element);
     }
 
     @Step("Submit element")
-    protected void submit(By locator, int timeout) {
-        getElement(locator, timeout).submit();
+    protected void submit(By locator) {
+        getElement(locator).submit();
     }
 
     @Step("Click element by index")
-    protected void clickByIndex(By locator, int index, int timeout) {
-
-        List<WebElement> elements = getElements(locator, timeout);
+    protected void clickByIndex(By locator, int index) {
+        List<WebElement> elements = getElements(locator);
 
         if (index >= elements.size()) {
             throw new RuntimeException("Index out of bounds for locator: " + locator);
@@ -117,47 +86,44 @@ public class ElementActions {
         elements.get(index).click();
     }
 
-    // ================= INPUT =================
+// ================= INPUT =================
 
     @Step("Send keys")
-    protected void sendKeys(By locator, int timeout, CharSequence... keys) {
-        WebElement element = getElement(locator, timeout);
+    protected void sendKeys(By locator, CharSequence... keys) {
+        WebElement element = getElement(locator);
         element.clear();
         element.sendKeys(keys);
     }
 
     @Step("Clear field")
     protected void clear(By locator) {
-        getElement(locator, 10).clear();
+        getElement(locator).clear();
     }
-
 
     @Step("Upload file: {filePath}")
     protected void uploadFile(By locator, String filePath) {
-
-        WebElement element = getElement(locator, 10);
-
+        WebElement element = getElement(locator);
         element.sendKeys(filePath);
     }
 
     @Step("Select from searchable DDL")
     public void selectFromSearchableDDL(By locator, String value) {
-        click(locator, 10);
-        sendKeys(locator, 10, value);
-        sendKeys(locator, 10, Keys.ESCAPE);
+        click(locator);
+        sendKeys(locator, value);
+        sendKeys(locator, Keys.ESCAPE);
     }
 
     // ================= GET DATA =================
 
     @Step("Get element text")
-    protected String getText(By locator, int timeout) {
-        return getElement(locator, timeout).getText();
+    protected String getText(By locator) {
+        return getElement(locator).getText();
     }
 
     @Step("Get text by index")
-    protected String getTextByIndex(By locator, int index, int timeout) {
+    protected String getTextByIndex(By locator, int index) {
 
-        List<WebElement> elements = getElements(locator, timeout);
+        List<WebElement> elements = getElements(locator);
 
         if (index >= elements.size()) {
             throw new RuntimeException("Index out of bounds for locator: " + locator);
@@ -167,78 +133,76 @@ public class ElementActions {
     }
 
     @Step("Get attribute")
-    protected String getAttribute(By locator, int timeout, String attribute) {
-        return getElement(locator, timeout).getAttribute(attribute);
+    protected String getAttribute(By locator, String attribute) {
+        return getElement(locator).getAttribute(attribute);
     }
 
     @Step("Get CSS value")
-    protected String getCssValue(By locator, int timeout, String css) {
-        return getElement(locator, timeout).getCssValue(css);
+    protected String getCssValue(By locator, String css) {
+        return getElement(locator).getCssValue(css);
     }
 
     @Step("Get tag name")
-    protected String getTagName(By locator, int timeout) {
-        return getElement(locator, timeout).getTagName();
+    protected String getTagName(By locator) {
+        return getElement(locator).getTagName();
     }
 
-    // ================= BOOLEAN CHECKS =================
+// ================= BOOLEAN CHECKS =================
 
     @Step("Check element displayed")
-    protected boolean isDisplayed(By locator, int timeout) {
-
+    protected boolean isDisplayed(By locator) {
         try {
-            return getElement(locator, timeout).isDisplayed();
-        } catch (Exception e) {
+            return getElement(locator).isDisplayed();
+        } catch (NoSuchElementException | TimeoutException e) {
             return false;
         }
     }
 
     @Step("Check element enabled")
-    protected boolean isEnabled(By locator, int timeout) {
-        return getElement(locator, timeout).isEnabled();
+    protected boolean isEnabled(By locator) {
+        return getElement(locator).isEnabled();
     }
 
     @Step("Check element selected")
-    protected boolean isSelected(By locator, int timeout) {
-        return getElement(locator, timeout).isSelected();
+    protected boolean isSelected(By locator) {
+        return getElement(locator).isSelected();
     }
 
-    // ================= MOUSE ACTIONS =================
+// ================= MOUSE ACTIONS =================
 
     @Step("Hover over element")
-    protected void hover(By locator, int timeout) {
-
-        actions.moveToElement(getElement(locator, timeout)).perform();
+    protected void hover(By locator) {
+        actions.moveToElement(getElement(locator)).perform();
     }
 
     @Step("Right click element")
-    protected void rightClick(By locator, int timeout) {
-        actions.contextClick(getElement(locator, timeout)).perform();
+    protected void rightClick(By locator) {
+        actions.contextClick(getElement(locator)).perform();
     }
 
     @Step("Drag and drop")
-    protected void dragAndDrop(By source, By target, int timeout) {
+    protected void dragAndDrop(By source, By target) {
         actions.dragAndDrop(
-                getElement(source, timeout),
-                getElement(target, timeout)
+                getElement(source),
+                getElement(target)
         ).perform();
     }
 
     @Step("Click and hold")
-    protected void clickAndHold(By locator, int timeout) {
-        actions.clickAndHold(getElement(locator, timeout)).perform();
+    protected void clickAndHold(By locator) {
+        actions.clickAndHold(getElement(locator)).perform();
     }
 
     @Step("Release element")
-    protected void release(By locator, int timeout) {
-        actions.release(getElement(locator, timeout)).perform();
+    protected void release(By locator) {
+        actions.release(getElement(locator)).perform();
     }
 
-    // ================= SCROLL =================
+// ================= SCROLL =================
 
     @Step("Scroll to element")
-    protected void scrollToElement(By locator, int timeout) {
-        WebElement element = getElement(locator, timeout);
+    protected void scrollToElement(By locator) {
+        WebElement element = getElement(locator);
 
         js.executeScript(
                 "arguments[0].scrollIntoView({block: 'center', inline: 'nearest'});",
@@ -264,9 +228,9 @@ public class ElementActions {
     // ================= DEBUG =================
 
     @Step("Highlight element")
-    protected void highlight(By locator, int timeout) {
+    protected void highlight(By locator) {
 
-        WebElement element = getElement(locator, timeout);
+        WebElement element = getElement(locator);
 
         js.executeScript(
                 "arguments[0].style.border='3px solid red'",
@@ -274,7 +238,7 @@ public class ElementActions {
         );
     }
 
-    // =============== VIEW ELEMENT ================
+// =============== VIEW ELEMENT ================
 
     @Step("Verify Is Element In Viewport")
     public boolean isElementInViewport(WebElement el) {

@@ -6,10 +6,10 @@
     }
   },
   "FeatureGroup": {
-    "nameAR": "اختبار",
-    "nameEN": "Auto",
-    "editNameAR": "تعديل الاختبار",
-    "editNameEN": "Auto after edit"
+    "nameAR": "مجموعة اختياري",
+    "nameEN": "feature_auto created",
+    "editNameAR": "مجموعة معدلة",
+    "editNameEN": "feature_updated"
   },
   "UseCases": {
     "titleAR":"قطاع النقل والخدمات اللوجستية",

@@ -24,23 +24,23 @@ public class PartnersPage extends BasePage<PartnersPage> {
     // Fluent setters — each returns `this` so calls can be chained
     @Step("Enter Arabic Name")
     public PartnersPage enterArabicName(String name) {
-        getElement(nameArabic,10)
+        getElement(nameArabic)
                 .sendKeys(Keys.chord(Keys.CONTROL,"a"), Keys.DELETE);
-        sendKeys(nameArabic,10,name);
+        sendKeys(nameArabic,name);
         return this;
     }
 
     @Step("Enter English Name")
     public PartnersPage enterEnglishName(String name) {
-        getElement(nameEnglish,10)
+        getElement(nameEnglish)
                 .sendKeys(Keys.chord(Keys.CONTROL,"a"), Keys.DELETE);
-        sendKeys(nameEnglish,10,name);
+        sendKeys(nameEnglish,name);
         return this;
     }
 
     @Step("Select Field DDL")
     public PartnersPage selectFieldDDL(String value) {
-        click(fieldDDL, 50);
+        click(fieldDDL);
         Actions actions = new Actions(driver);
         actions.sendKeys(value)
                 .pause(Duration.ofMillis(500))

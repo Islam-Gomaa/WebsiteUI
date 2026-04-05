@@ -20,25 +20,25 @@ public class LoginPage extends ElementActions {
     // Fluent setters — each returns `this` so calls can be chained
     @Step("Enter Email")
     public LoginPage enterEmail(String mail) {
-        sendKeys(loginEmail, 10, mail);
+        sendKeys(loginEmail, mail);
         return this;
     }
 
     @Step("Enter Password")
     public LoginPage enterPassword(String passwordText) {
-        sendKeys(password, 10, passwordText);
+        sendKeys(password, passwordText);
         return this;
     }
 
     @Step("Click Login Button")
     public BasePage clickLoginButton() {
-        click(loginButton, 10);
+        click(loginButton);
         return new BasePage(driver);
     }
 
     @Step("Verify Logo")
     public boolean isLogoDisplayed() {
-        return isDisplayed(logo, 10);
+        return isElementDisplayed(logo);
     }
 
 }

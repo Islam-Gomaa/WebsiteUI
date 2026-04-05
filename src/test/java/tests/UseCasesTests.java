@@ -16,10 +16,10 @@ public class UseCasesTests extends BaseTests {
     UseCasesPage useCasesPage;
 
     @BeforeMethod
-    public void login() {
+    public void setupAdminSession() {
+        openAdmin();
         basePage = AuthHelper.login(driver);
     }
-
     @Test(priority = 1)
     public void addUseCaseTest() throws InterruptedException {
 

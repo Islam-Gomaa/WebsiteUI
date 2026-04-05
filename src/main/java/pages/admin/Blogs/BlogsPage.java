@@ -35,23 +35,23 @@ public class BlogsPage extends BasePage<BlogsPage> {
 
     @Step("Enter Arabic Title")
     public BlogsPage enterArabicTitle(String name) {
-        getElement(titleArabic,10)
+        getElement(titleArabic)
                 .sendKeys(Keys.chord(Keys.CONTROL,"a"), Keys.DELETE);
-        sendKeys(titleArabic,10,name);
+        sendKeys(titleArabic,name);
         return this;
     }
 
     @Step("Enter English Title")
     public BlogsPage enterEnglishTitle(String name) {
-        getElement(titleEnglish,10)
+        getElement(titleEnglish)
                 .sendKeys(Keys.chord(Keys.CONTROL,"a"), Keys.DELETE);
-        sendKeys(titleEnglish,10,name);
+        sendKeys(titleEnglish,name);
         return this;
     }
 
     @Step("Select Category Type DDL")
     public BlogsPage selectCategoryTypeDDL(String value) {
-        click(categoryTypeDDL, 50);
+        click(categoryTypeDDL);
         Actions actions = new Actions(driver);
         actions.sendKeys(value)
                 .pause(Duration.ofMillis(500))
@@ -62,7 +62,7 @@ public class BlogsPage extends BasePage<BlogsPage> {
 
     @Step("Select Category DDL")
     public BlogsPage selectCategoryDDL(String value) {
-        click(categoryDDL, 50);
+        click(categoryDDL);
         Actions actions = new Actions(driver);
         actions.sendKeys(value)
                 .pause(Duration.ofMillis(500))
@@ -73,49 +73,49 @@ public class BlogsPage extends BasePage<BlogsPage> {
 
     @Step("Enter Arabic Sections")
     public BlogsPage enterArabicSections(String name) {
-        getElement(sectionsAR,10)
+        getElement(sectionsAR)
                 .sendKeys(Keys.chord(Keys.CONTROL,"a"), Keys.DELETE);
-        sendKeys(sectionsAR,10,name);
+        sendKeys(sectionsAR,name);
         return this;
     }
 
     @Step("Enter English Sections")
     public BlogsPage enterEnglishSections(String name) {
-        getElement(sectionsEN,10)
+        getElement(sectionsEN)
                 .sendKeys(Keys.chord(Keys.CONTROL,"a"), Keys.DELETE);
-        sendKeys(sectionsEN,10,name);
+        sendKeys(sectionsEN,name);
         return this;
     }
 
     @Step("Enter Arabic Content")
     public BlogsPage enterArabicContent(String name) {
-        getElement(contentAR,10)
+        getElement(contentAR)
                 .sendKeys(Keys.chord(Keys.CONTROL,"a"), Keys.DELETE);
-        sendKeys(contentAR,10,name);
+        sendKeys(contentAR,name);
         return this;
     }
 
     @Step("Enter English Content")
     public BlogsPage enterEnglishContent(String name) {
-        getElement(contentEN,10)
+        getElement(contentEN )
                 .sendKeys(Keys.chord(Keys.CONTROL,"a"), Keys.DELETE);
-        sendKeys(contentEN,10,name);
+        sendKeys(contentEN,name);
         return this;
     }
 
     @Step("Enter Arabic Brief")
     public BlogsPage enterArabicBrief(String name) {
-        getElement(briefAR,10)
+        getElement(briefAR )
                 .sendKeys(Keys.chord(Keys.CONTROL,"a"), Keys.DELETE);
-        sendKeys(briefAR,10,name);
+        sendKeys(briefAR,name);
         return this;
     }
 
     @Step("Enter English Brief")
     public BlogsPage enterEnglishBrief(String name) {
-        getElement(briefEN,10)
+        getElement(briefEN)
                 .sendKeys(Keys.chord(Keys.CONTROL,"a"), Keys.DELETE);
-        sendKeys(briefEN,10,name);
+        sendKeys(briefEN,name);
         return this;
     }
 
@@ -128,13 +128,13 @@ public class BlogsPage extends BasePage<BlogsPage> {
 
     @Step("Click Publish Blog checkbox")
     public BlogsPage clickPublishBlog() {
-            jsClick(publishBlog, 30);
+            jsClick(publishBlog);
         return this;
     }
 
     @Step("Click Add Blog")
     public BlogsPage clickAddBlog() {
-        click(addButton, 10);
+        click(addButton);
         return this;
     }
 

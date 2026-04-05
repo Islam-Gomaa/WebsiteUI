@@ -22,17 +22,17 @@ public class ClientsPage extends BasePage<ClientsPage> {
     // Fluent setters — each returns `this` so calls can be chained
     @Step("Enter Arabic Name")
     public ClientsPage enterArabicName(String name) {
-        getElement(nameArabic,10)
+        getElement(nameArabic)
                 .sendKeys(Keys.chord(Keys.CONTROL,"a"), Keys.DELETE);
-        sendKeys(nameArabic,10,name);
+        sendKeys(nameArabic,name);
         return this;
     }
 
     @Step("Enter English Name")
     public ClientsPage enterEnglishName(String name) {
-        getElement(nameEnglish,10)
+        getElement(nameEnglish)
                 .sendKeys(Keys.chord(Keys.CONTROL,"a"), Keys.DELETE);
-        sendKeys(nameEnglish,10,name);
+        sendKeys(nameEnglish,name);
         return this;
     }
 

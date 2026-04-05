@@ -47,125 +47,125 @@ public class BasePage<T extends BasePage<T>> extends ElementActions {
 
     @Step("Change Language")
     public T changeLanguage() {
-        click(englishBtn, 10);
+        click(englishBtn);
         return self();
     }
 
     @Step("Search Inputs")
     public T searchInputs(String searchText) {
         clear(searchInputs);
-        sendKeys(searchInputs , 10 , searchText);
+        sendKeys(searchInputs, searchText);
         return self();
     }
 
     @Step("Clear Search Inputs")
     public T closePopUpIcon() {
-        jsClick(closePopUp,10);
+        jsClick(closePopUp);
         return self();
     }
 
     @SuppressWarnings("UnusedReturnValue")
     @Step("Click on search result ")
     public T clickSearchResult() {
-        click(dataTableSearchResult, 10);
+        click(dataTableSearchResult);
         return self();
     }
     @Step("Clear Search Inputs")
     public T clearSearchInputs() {
-        jsClick(clearSearchIcon,10);
+        jsClick(clearSearchIcon);
         return self();
     }
 
     @Step("Click Add Button")
     public T clickAddButton() {
-        click(addBtn,10);
+        click(addBtn);
         return self();
     }
 
     @SuppressWarnings("UnusedReturnValue")
     @Step("Click Submit Btn")
     public T clickSubmit() {
-        jsClick(submitBtn,10);
+        jsClick(submitBtn);
         return self();
     }
 
     @SuppressWarnings("UnusedReturnValue")
     @Step("Click Edit Btn")
     public T clickEdit() {
-        getElements(editBtn,10).get(0).click();
+        getElements(editBtn).get(0).click();
         return self();
     }
 
     @Step("Get Item update")
     public String getTableSearchResult() {
-        return getText(dataTableSearchResult,10);
+        return getText(dataTableSearchResult);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     @Step("Click Delete Btn")
     public void clickDelete() {
-        getElements(deleteBtn,10).get(1).click();
+        getElements(deleteBtn).get(1).click();
     }
 
     @Step("Verify success icon appeared")
     public boolean isSuccessIconDisplayed() {
-        return getElement(successIcon,10).isDisplayed();
+        return getElement(successIcon).isDisplayed();
     }
 
     @Step("Verify success message appeared")
     public boolean isSuccessMessageDisplayed() {
-        return getElement(successIcon,10).isDisplayed();
+        return getElement(successIcon).isDisplayed();
     }
 
     @Step("Get success message")
     public String getSuccessMessage() {
-        return getText(successMessage,10);
+        return getText(successMessage);
     }
 
     @Step("Get no data available message")
         public String getNoDataAvailableMessage() {
-            return getText(noDataAvailableMessage,10);
+            return getText(noDataAvailableMessage);
     }
 
     @Step("Open Feature Group Page")
     public FeatureGroupPage openFeatureGroup() {
-        click(dataEntry,10);
-        click(featureGroup,10);
+        click(dataEntry);
+        click(featureGroup);
         return new FeatureGroupPage(driver);
     }
 
     @Step("Open UseCases Page")
     public UseCasesPage openUseCases() {
-        click(dataEntry,10);
-        click(useCases,10);
+        click(dataEntry);
+        click(useCases);
         return new UseCasesPage(driver);
     }
 
     @Step("Open Category Page")
     public CategoryPage openCategory() {
-        click(dataEntry,10);
-        click(category,10);
+        click(dataEntry);
+        click(category);
         return new CategoryPage(driver);
     }
 
     @Step("Open Clients Page")
     public ClientsPage openClients() {
-        click(dataEntry,10);
-        click(clients,10);
+        click(dataEntry);
+        click(clients);
         return new ClientsPage(driver);
     }
 
     @Step("Open Partners Page")
     public PartnersPage openPartners() {
-        click(dataEntry,10);
-        click(partners,10);
+        click(dataEntry);
+        click(partners);
         return new PartnersPage(driver);
     }
 
     @Step("Open Blogs Page")
     public BlogsPage openBlogs() {
-        click(blogs,10);
-        click(subBlogs,10);
+        click(blogs);
+        click(subBlogs);
         return new BlogsPage(driver);
     }
 
@@ -173,7 +173,7 @@ public class BasePage<T extends BasePage<T>> extends ElementActions {
 
     @Step("Open Services And Solutions Page")
     public ServicesAndSolutionsPage openServicesAndSolutions() {
-        click(solutionsAndServices,10);
+        click(solutionsAndServices);
         return new ServicesAndSolutionsPage(driver);
     }
 

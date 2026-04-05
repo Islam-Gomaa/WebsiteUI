@@ -33,39 +33,39 @@ public class CategoryPage extends BasePage<CategoryPage> {
 
     @Step("Enter Arabic Title")
     public CategoryPage enterArabicTitle(String name) {
-        getElement(titleArabic,10)
+        getElement(titleArabic)
                 .sendKeys(Keys.chord(Keys.CONTROL,"a"), Keys.DELETE);
-        sendKeys(titleArabic,10,name);
+        sendKeys(titleArabic,name);
         return this;
     }
 
     @Step("Enter English Title")
     public CategoryPage enterEnglishTitle(String name) {
-        getElement(titleEnglish,10)
+        getElement(titleEnglish)
                 .sendKeys(Keys.chord(Keys.CONTROL,"a"), Keys.DELETE);
-        sendKeys(titleEnglish,10,name);
+        sendKeys(titleEnglish,name);
         return this;
     }
     @Step("Enter Arabic description")
     public CategoryPage enterArabicDescription(String name) {
-        getElement(descriptionArabic,10)
+        getElement(descriptionArabic)
                 .sendKeys(Keys.chord(Keys.CONTROL,"a"), Keys.DELETE);
-        sendKeys(descriptionArabic,10,name);
+        sendKeys(descriptionArabic,name);
         return this;
     }
 
     @Step("Enter English description")
     public CategoryPage enterEnglishDescription(String name) {
-        getElement(descriptionEnglish,10)
+        getElement(descriptionEnglish)
                 .sendKeys(Keys.chord(Keys.CONTROL,"a"), Keys.DELETE);
-        sendKeys(descriptionEnglish,10,name);
+        sendKeys(descriptionEnglish,name);
         return this;
     }
 
     @Step("Select Main Category DDL")
     public CategoryPage selectMainCategoryDDL(String value) {
-        click(mainCategoryDDL, 10);
-        sendKeys(ddlOption(value), 10, Keys.ESCAPE);
+        click(mainCategoryDDL);
+        sendKeys(ddlOption(value),  Keys.ESCAPE);
         return this;
     }
 
@@ -79,40 +79,40 @@ public class CategoryPage extends BasePage<CategoryPage> {
     // SEO section
     @Step("Enter SEO Arabic Title")
     public CategoryPage enterSEOArabicTitle(String name) {
-        getElement(titleArabicOfSEO,10)
+        getElement(titleArabicOfSEO)
                 .sendKeys(Keys.chord(Keys.CONTROL,"a"), Keys.DELETE);
-        sendKeys(titleArabicOfSEO,10,name);
+        sendKeys(titleArabicOfSEO,name);
         return this;
     }
 
     @Step("Enter SEO English Title")
     public CategoryPage enterSEOEnglishTitle(String name) {
-        getElement(titleEnglishOfSEO,10)
+        getElement(titleEnglishOfSEO)
                 .sendKeys(Keys.chord(Keys.CONTROL,"a"), Keys.DELETE);
-        sendKeys(titleEnglishOfSEO,10,name);
+        sendKeys(titleEnglishOfSEO,name);
         return this;
     }
 
     @Step("Enter SEO Arabic description")
     public CategoryPage enterSEOArabicDescription(String name) {
-        getElement(descriptionSEOArabic,10)
+        getElement(descriptionSEOArabic)
                 .sendKeys(Keys.chord(Keys.CONTROL,"a"), Keys.DELETE);
-        sendKeys(descriptionSEOArabic,10,name);
+        sendKeys(descriptionSEOArabic,name);
         return this;
     }
 
     @Step("Enter SEO English description")
     public CategoryPage enterSEOEnglishDescription(String name) {
-        getElement(descriptionSEOEnglish,10)
+        getElement(descriptionSEOEnglish)
                 .sendKeys(Keys.chord(Keys.CONTROL,"a"), Keys.DELETE);
-        sendKeys(descriptionSEOEnglish,10,name);
+        sendKeys(descriptionSEOEnglish,name);
         return this;
     }
 
     @Step("Enter keywords")
     public CategoryPage enterKeyWords(String value) {
-            sendKeys(keyWords, 10, value);
-            sendKeys(keyWords, 10, Keys.ENTER.toString());
+            sendKeys(keyWords,  value);
+            sendKeys(keyWords,  Keys.ENTER.toString());
         return this;
     }
 

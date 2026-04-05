@@ -24,7 +24,7 @@ public class CategoryTests extends BaseTests {
     }
 
     @Test(priority = 1)
-    public void addCategoryTest(){
+    public void shouldAddEditAndDeleteCategorySuccessfully(){
 
         // ====== Control Panel ======
         categoryPage = basePage.openCategory();
