@@ -149,9 +149,9 @@ public class PartnersTests extends BaseTests {
                 .clearSearchInputs()
                 .searchInputs(dataModel().Partners.editNameEN);
 
-        Assertions.myAssertEquals(
-                basePage.getNoDataAvailableMessage(),
-                "No data available"
+        Assertions.myAssertTrue(
+                basePage.isNoDataMessageCorrect(),
+                "No data message is not displayed after search"
         );
 
         // ====== Website ======

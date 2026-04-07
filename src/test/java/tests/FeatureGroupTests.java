@@ -54,6 +54,9 @@ public class FeatureGroupTests extends BaseTests {
         );
 
         featureGroupPage
+//                .closePopUpIcon()
+//                .clearSearchInputs()
+//                .searchInputs(dataModel().FeatureGroup.nameEN)
                 .clickSearchResult()
                 .clickEdit()
                 .enterArabicName(dataModel().FeatureGroup.editNameAR)

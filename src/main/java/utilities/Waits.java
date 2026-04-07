@@ -1,11 +1,13 @@
 package utilities;
 
 import org.openqa.selenium.*;
-import org.openqa.selenium.support.ui.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.JavascriptExecutor;
 
 import java.time.Duration;
 import java.util.List;
-import java.util.Objects;
 
 public class Waits {
 
@@ -23,6 +25,25 @@ public class Waits {
                 .pollingEvery(Duration.ofMillis(POLLING))
                 .ignoring(NoSuchElementException.class)
                 .ignoring(StaleElementReferenceException.class);
+    }
+
+    // ================= PAGE LOAD / AJAX =================
+
+    public static void waitForPageLoad(WebDriver driver) {
+        getWait(driver).until(d ->
+                ((JavascriptExecutor) d)
+                        .executeScript("return document.readyState")
+                        .equals("complete")
+        );
+    }
+
+    public static void waitForAjax(WebDriver driver) {
+        getWait(driver).until(d ->
+                "complete".equals(
+                        ((JavascriptExecutor) d)
+                                .executeScript("return document.readyState")
+                )
+        );
     }
 
     // ================= VISIBILITY =================
@@ -75,8 +96,36 @@ public class Waits {
 
     // ================= TEXT =================
 
-    public static boolean waitForTextToBe(WebDriver driver, By locator, String text) {
-        return getWait(driver).until(ExpectedConditions.textToBe(locator, text));
+    public static String waitForText(WebDriver driver, By locator) {
+        return getWait(driver).until(d -> {
+            try {
+                String text = d.findElement(locator).getText();
+                return text != null && !text.trim().isEmpty() ? text : null;
+            } catch (StaleElementReferenceException e) {
+                return null;
+            }
+        });
+    }
+
+    public static boolean waitForTextToBe(WebDriver driver, By locator, String expectedText) {
+        return getWait(driver).until(d -> {
+            try {
+                return expectedText.equals(d.findElement(locator).getText());
+            } catch (StaleElementReferenceException e) {
+                return false;
+            }
+        });
+    }
+
+    public static boolean waitForTableResultOrNoData(WebDriver driver, By dataLocator, By noDataLocator) {
+        return getWait(driver).until(d -> {
+            try {
+                return !d.findElements(dataLocator).isEmpty()
+                        || !d.findElements(noDataLocator).isEmpty();
+            } catch (Exception e) {
+                return false;
+            }
+        });
     }
 
     // ================= ATTRIBUTE =================
@@ -95,15 +144,5 @@ public class Waits {
 
     public static void waitForFrameAndSwitch(WebDriver driver, By locator) {
         getWait(driver).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(locator));
-    }
-
-    // ================= PAGE LOAD =================
-
-    public static void waitForPageLoad(WebDriver driver) {
-        getWait(driver).until(webDriver ->
-                ((JavascriptExecutor) webDriver)
-                        .executeScript("return document.readyState")
-                        .equals("complete")
-        );
     }
 }

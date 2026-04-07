@@ -2,11 +2,16 @@ package pages.admin;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import pages.admin.Blogs.BlogsPage;
 import pages.website.ServicesAndSolutionsPage;
 import pages.admin.DataEntry.*;
 import utilities.ElementActions;
+import utilities.Waits;
+
+import java.util.List;
 
 public class BasePage<T extends BasePage<T>> extends ElementActions {
 
@@ -15,7 +20,7 @@ public class BasePage<T extends BasePage<T>> extends ElementActions {
     // Locators
     private final By englishBtn = By.cssSelector("[class*='flex items-center']");
     private final By searchInputs =  By.xpath("(//input[@placeholder='Search'])[2]");
-    private final By clearSearchIcon = By.cssSelector(".mdi-close-circle[role='button']");
+    private final By clearSearchIcon = By.cssSelector(".mdi-close-circle[role='button'][aria-label='Clear']");
     private final By closePopUp = By.cssSelector("button[type='button'][aria-label='Close this dialog']");
     private final By dataTableSearchResult = By.xpath("//tbody[@class='v-data-table__tbody']/tr[1]/td[2]");
     private final By addBtn = By.cssSelector("#teleported-items .flex .v-btn");
@@ -24,7 +29,8 @@ public class BasePage<T extends BasePage<T>> extends ElementActions {
     private final By successMessage = By.cssSelector(".swal2-title");
     private final By editBtn = By.cssSelector(".v-card-actions .flex button");
     private final By deleteBtn = By.cssSelector(".v-card-actions .flex button");
-    private final By noDataAvailableMessage = By.cssSelector(".v-data-table tr td .flex-col");
+    private final By noDataAvailableMessage = By.xpath("//td//div[normalize-space()='No data available']");
+    private final By noDataRow = By.cssSelector("tr.v-data-table-rows-no-data");
 
     // Page's locators
     private final By dataEntry = By.xpath("//span[normalize-space()='Data Entry']");
@@ -47,52 +53,63 @@ public class BasePage<T extends BasePage<T>> extends ElementActions {
 
     @Step("Change Language")
     public T changeLanguage() {
-        click(englishBtn);
+        Waits.waitForClickable(driver, englishBtn).click();
+        return self();
+    }
+
+    @Step("Clear Search Inputs")
+    public T clearSearchInputs() {
+        WebElement element = Waits.waitForVisible(driver, searchInputs);
+
+        element.click();
+        element.sendKeys(Keys.CONTROL + "a");
+        element.sendKeys(Keys.DELETE);
+
         return self();
     }
 
     @Step("Search Inputs")
     public T searchInputs(String searchText) {
-        clear(searchInputs);
+        Waits.waitForVisible(driver, searchInputs);
+
+        clearSearchInputs();
         sendKeys(searchInputs, searchText);
+
+        Waits.waitForTableResultOrNoData(driver, dataTableSearchResult, noDataRow);
+
         return self();
     }
 
-    @Step("Clear Search Inputs")
+    @Step("Close PopUp")
     public T closePopUpIcon() {
-        jsClick(closePopUp);
+        Waits.waitForClickable(driver, closePopUp).click();
         return self();
     }
 
-    @SuppressWarnings("UnusedReturnValue")
-    @Step("Click on search result ")
+    @Step("Click on search result")
     public T clickSearchResult() {
-        click(dataTableSearchResult);
-        return self();
-    }
-    @Step("Clear Search Inputs")
-    public T clearSearchInputs() {
-        jsClick(clearSearchIcon);
+        Waits.waitForVisible(driver, dataTableSearchResult);
+        Waits.waitForClickable(driver, dataTableSearchResult).click();
         return self();
     }
 
     @Step("Click Add Button")
     public T clickAddButton() {
-        click(addBtn);
+        Waits.waitForClickable(driver, addBtn).click();
         return self();
     }
 
     @SuppressWarnings("UnusedReturnValue")
     @Step("Click Submit Btn")
     public T clickSubmit() {
-        jsClick(submitBtn);
+        Waits.waitForClickable(driver, submitBtn).click();
         return self();
     }
 
     @SuppressWarnings("UnusedReturnValue")
     @Step("Click Edit Btn")
     public T clickEdit() {
-        getElements(editBtn).get(0).click();
+        Waits.waitForClickable(driver, editBtn).click();
         return self();
     }
 
@@ -104,7 +121,8 @@ public class BasePage<T extends BasePage<T>> extends ElementActions {
     @SuppressWarnings("UnusedReturnValue")
     @Step("Click Delete Btn")
     public void clickDelete() {
-        getElements(deleteBtn).get(1).click();
+        List<WebElement> elements = Waits.waitForAllVisible(driver, deleteBtn);
+        elements.get(1).click();
     }
 
     @Step("Verify success icon appeared")
@@ -123,10 +141,9 @@ public class BasePage<T extends BasePage<T>> extends ElementActions {
     }
 
     @Step("Get no data available message")
-        public String getNoDataAvailableMessage() {
-            return getText(noDataAvailableMessage);
+    public boolean isNoDataMessageCorrect() {
+        return Waits.waitForTextToBe(driver, noDataAvailableMessage, "No data available");
     }
-
     @Step("Open Feature Group Page")
     public FeatureGroupPage openFeatureGroup() {
         click(dataEntry);

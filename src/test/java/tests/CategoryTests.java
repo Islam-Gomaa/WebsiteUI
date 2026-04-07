@@ -132,17 +132,17 @@ public class CategoryTests extends BaseTests {
 
         // ====== Control Panel ======
 
-        categoryPage = basePage.openCategory();
         categoryPage
                 .closePopUpIcon()
                 .clearSearchInputs()
                 .searchInputs(dataModel().Category.editTitleEn);
 
         // assertion on control panel
-        Assertions.myAssertEquals(
-                basePage.getNoDataAvailableMessage(),
-                "No data available"
+        Assertions.myAssertTrue(
+                basePage.isNoDataMessageCorrect(),
+                "No data message is not displayed after search"
         );
+
     }
 }
 

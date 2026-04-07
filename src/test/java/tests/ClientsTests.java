@@ -7,6 +7,7 @@ import pages.admin.BasePage;
 import pages.admin.DataEntry.ClientsPage;
 import pages.website.HomePage;
 import utilities.AuthHelper;
+import utilities.Waits;
 import utils.Assertions;
 
 import static dataReader.ReadDataFromJson.dataModel;
@@ -148,12 +149,11 @@ public class ClientsTests extends BaseTests {
                 .clearSearchInputs()
                 .searchInputs(dataModel().Clients.editNameEN);
 
-        Assertions.myAssertEquals(
-                basePage.getNoDataAvailableMessage(),
-                "No data available"
+        Assertions.myAssertTrue(
+                basePage.isNoDataMessageCorrect(),
+                "No data message is not displayed after search"
         );
-
-        // ====== Website ======
+       //  ====== Website ======
 
         openWebsite();
         homePage = new HomePage(driver);

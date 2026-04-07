@@ -128,7 +128,7 @@ public class UseCasesTests extends BaseTests {
 
         // assertion on control panel
         Assertions.myAssertEquals(
-                basePage.getNoDataAvailableMessage(),
+                basePage.isNoDataMessageCorrect(),
                 "No data available"
         );
     }

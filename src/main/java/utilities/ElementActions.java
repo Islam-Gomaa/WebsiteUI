@@ -95,6 +95,12 @@ public class ElementActions {
         element.sendKeys(keys);
     }
 
+    protected void sendKeys(By locator, String text) {
+        WebElement element = Waits.waitForVisible(driver, locator);
+        element.clear();
+        element.sendKeys(text);
+    }
+
     @Step("Clear field")
     protected void clear(By locator) {
         getElement(locator).clear();
@@ -117,7 +123,7 @@ public class ElementActions {
 
     @Step("Get element text")
     protected String getText(By locator) {
-        return getElement(locator).getText();
+        return Waits.waitForText(driver, locator);
     }
 
     @Step("Get text by index")
