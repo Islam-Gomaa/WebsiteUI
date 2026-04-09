@@ -9,6 +9,7 @@ public class DataModel {
     public Clients Clients;
     public Partners Partners;
     public Blogs Blogs;
+    public BlogCategories BlogCategories;
 
 
 

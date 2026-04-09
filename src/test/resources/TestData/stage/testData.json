@@ -77,6 +77,16 @@
     "editContentEN": "AI has become a key factor in enhancing software development efficiency and accelerating processes.",
     "editBriefAR": "نظرة سريعة على دور الذكاء الاصطناعي في تطوير البرمجيات.",
     "editBriefEN": "A quick overview of AI's role in software development."
+  },
+  "BlogCategories": {
+    "titleArabic": "تطوير البرمجيات",
+    "titleEnglish": "Software Development",
+    "descriptionAR": "قسم خاص بكل ما يتعلق بتطوير البرمجيات والتقنيات الحديثة.",
+    "descriptionEN": "A category dedicated to software development and modern technologies.",
+    "editTitleArabic": "هندسة البرمجيات",
+    "editTitleEnglish": "Software Engineering",
+    "editDescriptionAR": "قسم محدث يشمل مفاهيم هندسة البرمجيات وأفضل الممارسات.",
+    "editDescriptionEN": "Updated category covering software engineering concepts and best practices."
   }
 
 }

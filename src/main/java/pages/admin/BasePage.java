@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import pages.admin.Blogs.BlogCategoriesPage;
 import pages.admin.Blogs.BlogsPage;
 import pages.website.BlogsWebPage;
 import pages.website.ServicesAndSolutionsPage;
@@ -42,6 +43,7 @@ public class BasePage<T extends BasePage<T>> extends ElementActions {
     private final By partners = By.xpath("//span[normalize-space()='Partners']");
     private final By blogs = By.xpath("//span[@class='ms-2 sub_link'][normalize-space()='Blogs'] ");
     private final By subBlogs = By.xpath("//span[@class='ms-3'][normalize-space()='Blogs'] ");
+    private final By blogCategories = By.xpath("//span[@class='ms-3'][normalize-space()='Blog Categories'] ");
     private final By solutionsAndServices = By.cssSelector("a[aria-label='Solutions and Services'][class='link']");
     private final By blogsTab = By.cssSelector("a[aria-label='Blogs'][title=\"Blogs\"][class*='footer-link']");
 
@@ -187,6 +189,13 @@ public class BasePage<T extends BasePage<T>> extends ElementActions {
         click(blogs);
         click(subBlogs);
         return new BlogsPage(driver);
+    }
+
+    @Step("Open Blog Categories Page")
+    public BlogCategoriesPage openBlogCategories() {
+        click(blogs);
+        click(blogCategories);
+        return new BlogCategoriesPage(driver);
     }
 
     // Website pages

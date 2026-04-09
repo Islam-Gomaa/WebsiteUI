@@ -4,16 +4,16 @@ import base.BaseTests;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.admin.BasePage;
+import pages.admin.Blogs.BlogCategoriesPage;
 import utilities.AuthHelper;
-import pages.admin.DataEntry.FeatureGroupPage;
 import utils.Assertions;
 
 import static dataReader.ReadDataFromJson.dataModel;
 
-public class FeatureGroupTests extends BaseTests {
+public class BlogCategoriesTests extends BaseTests {
 
     BasePage basePage;
-    FeatureGroupPage featureGroupPage;
+    BlogCategoriesPage blogCategoriesPage;
 
     @BeforeMethod
     public void setupAdminSession() {
@@ -22,63 +22,17 @@ public class FeatureGroupTests extends BaseTests {
     }
 
     @Test(priority = 1)
-    public void createFeatureGroupTest() {
+    public void shouldAddEditAndDeleteBlogCategorySuccessfully(){
 
         // ====== Control Panel ======
-
-        featureGroupPage = basePage.openFeatureGroup();
-        featureGroupPage
+        blogCategoriesPage = basePage.openBlogCategories();
+        blogCategoriesPage
                 .clickAddButton()
-                .enterArabicName(dataModel().FeatureGroup.nameAR)
-                .enterEnglishName(dataModel().FeatureGroup.nameEN)
+                .enterArabicTitle(dataModel().BlogCategories.titleArabic)
+                .enterEnglishTitle(dataModel().BlogCategories.titleEnglish)
+                .enterDescriptionArabic(dataModel().BlogCategories.descriptionAR)
+                .enterDescriptionEnglish(dataModel().BlogCategories.descriptionEN)
                 .clickSubmit();
-
-        Assertions.myAssertTrue(
-                basePage.isSuccessIconDisplayed()
-                        && basePage.isSuccessMessageDisplayed(),
-                "Success popup is not displayed correctly");
-
-        Assertions.myAssertEquals(
-                basePage.getSuccessMessage(),
-                "Created successfully");
-
-        featureGroupPage
-                .closePopUpIcon()
-                .searchInputs(dataModel().FeatureGroup.nameEN);
-
-        Assertions.myAssertEquals(
-                basePage.getTableSearchResult(),
-                dataModel().FeatureGroup.nameEN);
-
-        featureGroupPage
-                .searchInputs(dataModel().FeatureGroup.nameEN)
-                .clickSearchResult()
-                .clickEdit()
-                .enterArabicName(dataModel().FeatureGroup.editNameAR)
-                .enterEnglishName(dataModel().FeatureGroup.editNameEN)
-                .clickSubmit();
-
-        Assertions.myAssertTrue(
-                basePage.isSuccessIconDisplayed()
-                        && basePage.isSuccessMessageDisplayed(),
-                "Success popup is not displayed correctly");
-
-        Assertions.myAssertEquals(
-                basePage.getSuccessMessage(),
-                "Updated successfully");
-
-        featureGroupPage
-                .closePopUpIcon()
-                .searchInputs(dataModel().FeatureGroup.editNameEN);
-
-        Assertions.myAssertEquals(
-                basePage.getTableSearchResult(),
-                dataModel().FeatureGroup.editNameEN);
-
-        featureGroupPage
-                .searchInputs(dataModel().FeatureGroup.editNameEN)
-                .clickSearchResult()
-                .clickDelete();
 
         Assertions.myAssertTrue(
                 basePage.isSuccessIconDisplayed()
@@ -87,18 +41,67 @@ public class FeatureGroupTests extends BaseTests {
         );
         Assertions.myAssertEquals(
                 basePage.getSuccessMessage(),
-                "Deleted successfully"
+                "Created successfully");
+
+        blogCategoriesPage
+                .closePopUpIcon()
+                .searchInputs(dataModel().BlogCategories.titleEnglish);
+
+        Assertions.myAssertEquals(
+                basePage.getTableSearchResult(),
+                dataModel().BlogCategories.titleEnglish);
+
+        blogCategoriesPage
+                .searchInputs(dataModel().BlogCategories.titleEnglish)
+                .clickSearchResult()
+                .clickEdit()
+                .enterArabicTitle(dataModel().BlogCategories.editTitleArabic)
+                .enterEnglishTitle(dataModel().BlogCategories.editTitleEnglish)
+                .enterDescriptionArabic(dataModel().BlogCategories.editDescriptionAR)
+                .enterDescriptionEnglish(dataModel().BlogCategories.editDescriptionEN)
+                .clickSubmit();
+        Assertions.myAssertTrue(
+                basePage.isSuccessIconDisplayed()
+                        && basePage.isSuccessMessageDisplayed(),
+                "Success popup is not displayed correctly"
+        );
+        Assertions.myAssertEquals(
+                basePage.getSuccessMessage(),
+                "Updated successfully"
         );
 
-        featureGroupPage
+        blogCategoriesPage
+                .closePopUpIcon()
+                .searchInputs(dataModel().BlogCategories.editTitleEnglish);
+
+        Assertions.myAssertEquals(
+                basePage.getTableSearchResult(),
+                dataModel().BlogCategories.editTitleEnglish);
+
+        blogCategoriesPage
+                .searchInputs(dataModel().BlogCategories.editTitleEnglish)
+                .clickSearchResult()
+                .clickDelete();
+
+        Assertions.myAssertTrue(
+                basePage.isSuccessIconDisplayed()
+                        && basePage.isSuccessMessageDisplayed(),
+                "Success popup is not displayed correctly");
+
+        Assertions.myAssertEquals(
+                basePage.getSuccessMessage(),
+                "Deleted successfully");
+
+        blogCategoriesPage
                 .closePopUpIcon()
                 .clearSearchInputs()
-                .searchInputs(dataModel().FeatureGroup.editNameEN);
+                .searchInputs(dataModel().BlogCategories.editTitleEnglish);
 
         Assertions.myAssertTrue(
                 basePage.isNoDataMessageCorrect(),
                 "No data message is not displayed after search"
         );
+
     }
 }
 
