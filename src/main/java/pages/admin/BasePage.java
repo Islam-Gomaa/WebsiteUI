@@ -6,6 +6,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import pages.admin.Blogs.BlogsPage;
+import pages.website.BlogsWebPage;
 import pages.website.ServicesAndSolutionsPage;
 import pages.admin.DataEntry.*;
 import utilities.ElementActions;
@@ -42,6 +43,8 @@ public class BasePage<T extends BasePage<T>> extends ElementActions {
     private final By blogs = By.xpath("//span[@class='ms-2 sub_link'][normalize-space()='Blogs'] ");
     private final By subBlogs = By.xpath("//span[@class='ms-3'][normalize-space()='Blogs'] ");
     private final By solutionsAndServices = By.cssSelector("a[aria-label='Solutions and Services'][class='link']");
+    private final By blogsTab = By.cssSelector("a[aria-label='Blogs'][title=\"Blogs\"][class*='footer-link']");
+
 
 
     // Fluent setters
@@ -192,6 +195,12 @@ public class BasePage<T extends BasePage<T>> extends ElementActions {
     public ServicesAndSolutionsPage openServicesAndSolutions() {
         click(solutionsAndServices);
         return new ServicesAndSolutionsPage(driver);
+    }
+
+    @Step("Open Blogs Page")
+    public BlogsWebPage openBlogsWebsite() {
+        click(blogsTab);
+        return new BlogsWebPage(driver);
     }
 
 }

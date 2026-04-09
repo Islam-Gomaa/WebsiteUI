@@ -24,31 +24,23 @@ public class UseCasesPage extends BasePage<UseCasesPage> {
 
     @Step("Enter Arabic Title")
     public UseCasesPage enterArabicTitle(String name) {
-        getElement(titleArabic)
-                .sendKeys(Keys.chord(Keys.CONTROL,"a"), Keys.DELETE);
         sendKeys(titleArabic,name);
         return this;
     }
 
     @Step("Enter English Title")
     public UseCasesPage enterEnglishTitle(String name) {
-        getElement(titleEnglish)
-                .sendKeys(Keys.chord(Keys.CONTROL,"a"), Keys.DELETE);
         sendKeys(titleEnglish,name);
         return this;
     }
     @Step("Enter Arabic Content")
     public UseCasesPage enterArabicContent(String name) {
-        getElement(contentArabic)
-                .sendKeys(Keys.chord(Keys.CONTROL,"a"), Keys.DELETE);
         sendKeys(contentArabic,name);
         return this;
     }
 
     @Step("Enter English Content")
     public UseCasesPage enterEnglishContent(String name) {
-        getElement(contentEnglish)
-                .sendKeys(Keys.chord(Keys.CONTROL,"a"), Keys.DELETE);
         sendKeys(contentEnglish,name);
         return this;
     }

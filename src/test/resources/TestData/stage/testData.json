@@ -22,8 +22,8 @@
     "editTitleEN": "Test edit - Transportation and Logistic"
   },
   "Category": {
-    "titleAr": " hohguj اختبار السيبراني",
-    "titleEn": "Test Cyber ljhjjd",
+    "titleAr": "=اختبار السيبراني",
+    "titleEn": "Test Cyber",
     "descriptionAr": "قسم خاص بحماية الأنظمة والشبكات من الهجمات الإلكترونية",
     "descriptionEn": "Category focused on protecting systems and networks from cyber threats",
     "mainCategory": "Auto",
@@ -33,8 +33,8 @@
     "descriptionArSEO": "كل ما يتعلق بالأمن السيبراني وحماية البيانات",
     "descriptionEnSEO": "Everything related to cybersecurity and data protection",
     "keywords": " cyber security",
-    "editTitleAr": "hfhn الأمن السيبراني المتقدم",
-    "editTitleEn": "Advanced Cyber Security khsdb",
+    "editTitleAr": "الأمن السيبراني المتقدم",
+    "editTitleEn": "Advanced Cyber Security",
     "editNameArSEO": "الأمن-السيبراني-المتقدم",
     "editNameEnSEO": "advanced-cyber-security",
     "editDescriptionArSEO": "تحديث لقسم الأمن السيبراني",
@@ -55,18 +55,28 @@
     "editNameAR": "شريك معدل",
     "editNameEN": "partner_updated"
   },
-  "Blogs":{
-    "titleArabic" : "أهمية الذكاء الاصطناعي في تطوير البرمجيات",
-    "titleEnglish" : "The Importance of AI in Software Development",
-    "categoryTypeNews" : "News",
-    "categoryTypeArticle" : "Article",
-    "category" : "Web Development",
-    "sectionsAR" : "مقدمة في الذكاء الاصطناعي",
-    "sectionsEN" : "Introduction to Artificial Intelligence",
-    "contentAR" : "يعتبر الذكاء الاصطناعي من أهم التقنيات الحديثة التي تساهم في تحسين جودة البرمجيات وزيادة الإنتاجية.",
-    "contentEN" : "Artificial intelligence is one of the most important modern technologies that improves software quality and increases productivity.",
-    "briefAR" : "مقال يوضح دور الذكاء الاصطناعي في تطوير البرمجيات.",
-    "briefEN" : "An article explaining the role of AI in software development.",
-    "image": "blogImage.png"
+  "Blogs": {
+    "titleArabic": "أهمية الذكاء الاصطناعي في تطوير البرمجيات",
+    "titleEnglish": "The Importance of AI in Software Development",
+    "categoryTypeNews": "News",
+    "categoryTypeArticle": "Article",
+    "category": "Web Development",
+    "sectionsAR": "مقدمة في الذكاء الاصطناعي",
+    "sectionsEN": "Introduction to Artificial Intelligence",
+    "contentAR": "يعتبر الذكاء الاصطناعي من أهم التقنيات الحديثة التي تساهم في تحسين جودة البرمجيات وزيادة الإنتاجية.",
+    "contentEN": "Artificial intelligence is one of the most important modern technologies that improves software quality and increases productivity.",
+    "briefAR": "مقال يوضح دور الذكاء الاصطناعي في تطوير البرمجيات.",
+    "briefEN": "An article explaining the role of AI in software development.",
+    "image": "blogImage.png",
+
+    "editTitleArabic": "تأثير الذكاء الاصطناعي على تطوير البرمجيات",
+    "editTitleEnglish": "Impact of AI on Software Development",
+    "editSectionsAR": "أساسيات الذكاء الاصطناعي",
+    "editSectionsEN": "AI Fundamentals",
+    "editContentAR": "أصبح الذكاء الاصطناعي عنصرًا أساسيًا في تحسين كفاءة تطوير البرمجيات وتسريع العمليات.",
+    "editContentEN": "AI has become a key factor in enhancing software development efficiency and accelerating processes.",
+    "editBriefAR": "نظرة سريعة على دور الذكاء الاصطناعي في تطوير البرمجيات.",
+    "editBriefEN": "A quick overview of AI's role in software development."
   }
+
 }

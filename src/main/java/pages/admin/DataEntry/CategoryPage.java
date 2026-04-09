@@ -41,23 +41,17 @@ public class CategoryPage extends BasePage<CategoryPage> {
 
     @Step("Enter English Title")
     public CategoryPage enterEnglishTitle(String name) {
-        getElement(titleEnglish)
-                .sendKeys(Keys.chord(Keys.CONTROL,"a"), Keys.DELETE);
         sendKeys(titleEnglish,name);
         return this;
     }
     @Step("Enter Arabic description")
     public CategoryPage enterArabicDescription(String name) {
-        getElement(descriptionArabic)
-                .sendKeys(Keys.chord(Keys.CONTROL,"a"), Keys.DELETE);
         sendKeys(descriptionArabic,name);
         return this;
     }
 
     @Step("Enter English description")
     public CategoryPage enterEnglishDescription(String name) {
-        getElement(descriptionEnglish)
-                .sendKeys(Keys.chord(Keys.CONTROL,"a"), Keys.DELETE);
         sendKeys(descriptionEnglish,name);
         return this;
     }
@@ -79,32 +73,24 @@ public class CategoryPage extends BasePage<CategoryPage> {
     // SEO section
     @Step("Enter SEO Arabic Title")
     public CategoryPage enterSEOArabicTitle(String name) {
-        getElement(titleArabicOfSEO)
-                .sendKeys(Keys.chord(Keys.CONTROL,"a"), Keys.DELETE);
         sendKeys(titleArabicOfSEO,name);
         return this;
     }
 
     @Step("Enter SEO English Title")
     public CategoryPage enterSEOEnglishTitle(String name) {
-        getElement(titleEnglishOfSEO)
-                .sendKeys(Keys.chord(Keys.CONTROL,"a"), Keys.DELETE);
         sendKeys(titleEnglishOfSEO,name);
         return this;
     }
 
     @Step("Enter SEO Arabic description")
     public CategoryPage enterSEOArabicDescription(String name) {
-        getElement(descriptionSEOArabic)
-                .sendKeys(Keys.chord(Keys.CONTROL,"a"), Keys.DELETE);
         sendKeys(descriptionSEOArabic,name);
         return this;
     }
 
     @Step("Enter SEO English description")
     public CategoryPage enterSEOEnglishDescription(String name) {
-        getElement(descriptionSEOEnglish)
-                .sendKeys(Keys.chord(Keys.CONTROL,"a"), Keys.DELETE);
         sendKeys(descriptionSEOEnglish,name);
         return this;
     }

@@ -1,10 +1,9 @@
 package pages.admin.Blogs;
 
 import io.qameta.allure.Step;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.admin.BasePage;
 import pages.admin.DataEntry.PartnersPage;
 
@@ -30,21 +29,23 @@ public class BlogsPage extends BasePage<BlogsPage> {
     private final By image = By.cssSelector("input[type='file']");
     private final By publishBlog = By.cssSelector("input[id*='checkbox'][aria-label='publish blog']");
     private final By addButton = By.cssSelector("[form='myForm'] button[type='submit']");
+    private final By editButton = By.xpath("//button[.='Edit']");
+    private final By saveButton = By.xpath("//button[.='Save']");
+    private final By deleteButton = By.xpath("//button[.='Delete']");
+    private final By confirmDeleteButton = By.xpath("//button[.='confirm']");
+    private final By uploadedLogoName = By.cssSelector(".file-name");
+
 
     // Fluent setters — each returns `this` so calls can be chained
 
     @Step("Enter Arabic Title")
     public BlogsPage enterArabicTitle(String name) {
-        getElement(titleArabic)
-                .sendKeys(Keys.chord(Keys.CONTROL,"a"), Keys.DELETE);
-        sendKeys(titleArabic,name);
+        sendKeys(titleArabic, name);
         return this;
     }
 
     @Step("Enter English Title")
     public BlogsPage enterEnglishTitle(String name) {
-        getElement(titleEnglish)
-                .sendKeys(Keys.chord(Keys.CONTROL,"a"), Keys.DELETE);
         sendKeys(titleEnglish,name);
         return this;
     }
@@ -73,48 +74,36 @@ public class BlogsPage extends BasePage<BlogsPage> {
 
     @Step("Enter Arabic Sections")
     public BlogsPage enterArabicSections(String name) {
-        getElement(sectionsAR)
-                .sendKeys(Keys.chord(Keys.CONTROL,"a"), Keys.DELETE);
         sendKeys(sectionsAR,name);
         return this;
     }
 
     @Step("Enter English Sections")
     public BlogsPage enterEnglishSections(String name) {
-        getElement(sectionsEN)
-                .sendKeys(Keys.chord(Keys.CONTROL,"a"), Keys.DELETE);
         sendKeys(sectionsEN,name);
         return this;
     }
 
     @Step("Enter Arabic Content")
     public BlogsPage enterArabicContent(String name) {
-        getElement(contentAR)
-                .sendKeys(Keys.chord(Keys.CONTROL,"a"), Keys.DELETE);
         sendKeys(contentAR,name);
         return this;
     }
 
     @Step("Enter English Content")
     public BlogsPage enterEnglishContent(String name) {
-        getElement(contentEN )
-                .sendKeys(Keys.chord(Keys.CONTROL,"a"), Keys.DELETE);
         sendKeys(contentEN,name);
         return this;
     }
 
     @Step("Enter Arabic Brief")
     public BlogsPage enterArabicBrief(String name) {
-        getElement(briefAR )
-                .sendKeys(Keys.chord(Keys.CONTROL,"a"), Keys.DELETE);
         sendKeys(briefAR,name);
         return this;
     }
 
     @Step("Enter English Brief")
     public BlogsPage enterEnglishBrief(String name) {
-        getElement(briefEN)
-                .sendKeys(Keys.chord(Keys.CONTROL,"a"), Keys.DELETE);
         sendKeys(briefEN,name);
         return this;
     }
@@ -136,6 +125,51 @@ public class BlogsPage extends BasePage<BlogsPage> {
     public BlogsPage clickAddBlog() {
         click(addButton);
         return this;
+    }
+
+    @Step("Click Edit Blog")
+    public BlogsPage clickEditBlog() {
+        click(editButton);
+        return this;
+    }
+
+    @Step("Click Save Blog")
+    public BlogsPage clickSaveBlog() {
+        click(saveButton);
+        return this;
+    }
+
+    @Step("Click Delete Blog")
+    public BlogsPage clickDeleteBlog() {
+        click(deleteButton);
+        return this;
+    }
+
+    @Step("Click Confirm  Delete Blog")
+    public BlogsPage clickConfirmDeleteBlog() {
+        click(confirmDeleteButton);
+        return this;
+    }
+
+    @Step("Get Logo Src")
+    public String getUploadedLogoSrc() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        return wait.until(driver -> {
+            try {
+                WebElement el = driver.findElement(uploadedLogoName);
+                String text = el.getText();
+                return (text != null && !text.trim().isEmpty()) ? text.trim() : null;
+            } catch (StaleElementReferenceException e) {
+                return null;
+            }
+        });
+    }
+
+    @Step("Open blog and get logo")
+    public String openBlogAndGetLogo() {
+        clickSearchResult();
+        return getUploadedLogoSrc();
     }
 
 }

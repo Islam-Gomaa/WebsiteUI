@@ -145,4 +145,10 @@ public class Waits {
     public static void waitForFrameAndSwitch(WebDriver driver, By locator) {
         getWait(driver).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(locator));
     }
+
+    // =============== ELEMENT WAITS =================
+
+    public static void waitForResultsToAppear(WebDriver driver, By locator, int number) {
+        getWait(driver).until(ExpectedConditions.numberOfElementsToBeMoreThan(locator, number));
+    }
 }

@@ -52,9 +52,30 @@ public class ElementActions {
 
     // ================= CLICK =================
 
+    protected void safeClick(By locator) {
+        int attempts = 0;
+
+        while (attempts < 3) {
+            try {
+                WebElement element = Waits.waitForClickable(driver, locator);
+                element.click();
+                return;
+            } catch (StaleElementReferenceException e) {
+                attempts++;
+            }
+        }
+
+        throw new RuntimeException("Failed to click due to stale element");
+    }
     @Step("Click element")
     protected void click(By locator) {
-        Waits.waitForClickable(driver, locator).click();
+        try {
+            WebElement element = Waits.waitForClickable(driver, locator);
+            element.click();
+        } catch (Exception e) {
+            scrollToElement(locator);
+            safeClick(locator);
+        }
     }
 
     @Step("Double Click element")
@@ -96,9 +117,29 @@ public class ElementActions {
     }
 
     protected void sendKeys(By locator, String text) {
-        WebElement element = Waits.waitForVisible(driver, locator);
-        element.clear();
-        element.sendKeys(text);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        for (int i = 0; i < 3; i++) {
+            try {
+                WebElement element = Waits.waitForVisible(driver, locator);
+                scrollToElement(locator);
+                js.executeScript("arguments[0].value = '';", element);
+                js.executeScript("arguments[0].value = arguments[1];", element, text);
+
+                // trigger React/Vue
+                js.executeScript(
+                        "arguments[0].dispatchEvent(new Event('input', { bubbles: true }));",
+                        element
+                );
+                // verify
+                String value = element.getAttribute("value");
+                if (text.equals(value)) {
+                    return;
+                }
+            } catch (Exception e) {
+                // ignore and retry
+            }
+        }
+        throw new RuntimeException("Failed to set text");
     }
 
     @Step("Clear field")

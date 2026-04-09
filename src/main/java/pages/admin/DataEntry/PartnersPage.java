@@ -24,16 +24,12 @@ public class PartnersPage extends BasePage<PartnersPage> {
     // Fluent setters — each returns `this` so calls can be chained
     @Step("Enter Arabic Name")
     public PartnersPage enterArabicName(String name) {
-        getElement(nameArabic)
-                .sendKeys(Keys.chord(Keys.CONTROL,"a"), Keys.DELETE);
         sendKeys(nameArabic,name);
         return this;
     }
 
     @Step("Enter English Name")
     public PartnersPage enterEnglishName(String name) {
-        getElement(nameEnglish)
-                .sendKeys(Keys.chord(Keys.CONTROL,"a"), Keys.DELETE);
         sendKeys(nameEnglish,name);
         return this;
     }

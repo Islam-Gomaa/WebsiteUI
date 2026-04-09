@@ -5,7 +5,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.admin.BasePage;
 import pages.admin.Blogs.BlogsPage;
-import pages.website.HomePage;
+import pages.website.BlogsWebPage;
 import utilities.AuthHelper;
 import utils.Assertions;
 
@@ -15,7 +15,7 @@ public class BlogsTests extends BaseTests {
 
     BasePage basePage;
     BlogsPage blogsPage;
-    HomePage homePage;
+    BlogsWebPage blogsWebPage;
 
     private String logoSrc;
 
@@ -27,12 +27,10 @@ public class BlogsTests extends BaseTests {
     }
 
     @Test(priority = 1)
-    public void addNewsTest(){
+    public void shouldAddEditAndDeleteNewsSuccessfully(){
 
         // ====== Control Panel ======
-
         blogsPage = basePage.openBlogs();
-
         blogsPage
                 .clickAddButton()
                 .enterArabicTitle(dataModel().Blogs.titleArabic)
@@ -58,118 +56,310 @@ public class BlogsTests extends BaseTests {
                 basePage.getSuccessMessage(),
                 "Created successfully"
         );
-//        // ====== Control Panel ======
-//
-//        clientsPage
-//                .closePopUpIcon()
-//                .searchInputs(dataModel().Clients.nameEN);
-//
-//        Assertions.myAssertEquals(
-//                basePage.getTableSearchResult(),
-//                dataModel().Clients.nameEN);
-//
-//        logoSrc = clientsPage.openClientAndGetLogo();
-//
-//        System.out.println("LOGO SRC = " + logoSrc);
-//
-//        // ====== Website ======
-//
-//        openWebsite();
-//        homePage = new HomePage(driver);
-//
-//        Assertions.myAssertTrue(
-//                homePage.isClientLogoDisplayed(logoSrc),
-//                "Client is not displayed on website");
-//
-//        // ====== Control Panel ======
-//
-//        openAdmin();
-//
-//        clientsPage = basePage.openClients();
-//        clientsPage
-//                .searchInputs(dataModel().Clients.nameEN)
-//                .clickSearchResult()
-//                .clickEditFeature()
-//                .enterArabicName(dataModel().Clients.editNameAR)
-//                .enterEnglishName(dataModel().Clients.editNameEN)
-//                .uploadLogo(System.getProperty("user.dir") + "/src/test/resources/images/" + dataModel().Clients.logo)
-//                .clickSubmit();
-//
-//        Assertions.myAssertTrue(
-//                basePage.isSuccessIconDisplayed()
-//                        && basePage.isSuccessMessageDisplayed(),
-//                "Success popup is not displayed correctly"
-//        );
-//        Assertions.myAssertEquals(
-//                basePage.getSuccessMessage(),
-//                "Updated successfully"
-//        );
-//
-//        // ====== Control Panel ======
-//
-//        clientsPage
-//                .closePopUpIcon()
-//                .clearSearchInputs()
-//                .searchInputs(dataModel().Clients.editNameEN);
-//
-//        Assertions.myAssertEquals(
-//                basePage.getTableSearchResult(),
-//                dataModel().Clients.editNameEN);
-//
-//        logoSrc = clientsPage.openClientAndGetLogo();
-//
-//        System.out.println("LOGO SRC = " + logoSrc);
-//
-//        // ====== Website ======
-//
-//        openWebsite();
-//        homePage = new HomePage(driver);
-//
-//        Assertions.myAssertTrue(
-//                homePage.isClientLogoDisplayed(logoSrc),
-//                "Client is not displayed on website");
-//
-//        // ====== Control Panel ======
-//
-//        openAdmin();
-//
-//        clientsPage = basePage.openClients();
-//        clientsPage
-//                .clearSearchInputs()
-//                .searchInputs(dataModel().Clients.editNameEN)
-//                .clickSearchResult()
-//                .clickDeleteFeature();
-//
-//        Assertions.myAssertTrue(
-//                basePage.isSuccessIconDisplayed()
-//                        && basePage.isSuccessMessageDisplayed(),
-//                "Success popup is not displayed correctly"
-//        );
+
+        blogsPage
+                .closePopUpIcon()
+                .searchInputs(dataModel().Blogs.titleEnglish);
+
+        Assertions.myAssertEquals(
+                basePage.getTableSearchResult(),
+                dataModel().Blogs.titleEnglish);
+
+        logoSrc = blogsPage.openBlogAndGetLogo();
+
+        // ====== Website ======
+
+        openWebsite();
+        blogsWebPage = basePage.openBlogsWebsite();
+        blogsWebPage
+                .blogSearchInputs(dataModel().Blogs.titleEnglish);
+
+        Assertions.myAssertEquals(
+                blogsWebPage.getBlogTitle(),
+                dataModel().Blogs.titleEnglish);
+
+        Assertions.myAssertTrue(
+                blogsWebPage.isBlogLogoDisplayed(logoSrc),
+                "News is not displayed on website");
+        blogsWebPage
+                .openBlogDetails(logoSrc);
+
+        Assertions.myAssertEquals(
+                blogsWebPage.getBlogContent(),
+                dataModel().Blogs.contentEN);
+
+        // ====== Control Panel ======
+
+        openAdmin();
+
+     blogsPage = basePage.openBlogs();
+        blogsPage
+                .searchInputs(dataModel().Blogs.titleEnglish)
+                .clickSearchResult()
+                .clickEditBlog()
+                .enterArabicTitle(dataModel().Blogs.editTitleArabic)
+                .enterEnglishTitle(dataModel().Blogs.editTitleEnglish)
+                .enterArabicSections(dataModel().Blogs.editSectionsAR)
+                .enterEnglishSections(dataModel().Blogs.editSectionsEN)
+                .enterArabicContent(dataModel().Blogs.editContentAR)
+                .enterEnglishContent(dataModel().Blogs.editContentEN)
+                .enterArabicBrief(dataModel().Blogs.editBriefAR)
+                .enterEnglishBrief(dataModel().Blogs.editBriefEN)
+                .uploadImage(System.getProperty("user.dir")+ "/src/test/resources/images/" + dataModel().Blogs.image)
+                .clickSaveBlog();
+
+        Assertions.myAssertTrue(
+                basePage.isSuccessIconDisplayed()
+                        && basePage.isSuccessMessageDisplayed(),
+                "Success popup is not displayed correctly"
+        );
+        Assertions.myAssertEquals(
+                basePage.getSuccessMessage(),
+                "Updated successfully"
+        );
+
+        blogsPage
+                .closePopUpIcon()
+                .searchInputs(dataModel().Blogs.editTitleEnglish);
+
+        Assertions.myAssertEquals(
+                basePage.getTableSearchResult(),
+                dataModel().Blogs.editTitleEnglish);
+
+        logoSrc = blogsPage.openBlogAndGetLogo();
+
+        // ====== Website ======
+
+        openWebsite();
+        blogsWebPage = basePage.openBlogsWebsite();
+        blogsWebPage
+                .blogSearchInputs(dataModel().Blogs.editTitleEnglish);
+
+        Assertions.myAssertEquals(
+                blogsWebPage.getBlogTitle(),
+                dataModel().Blogs.editTitleEnglish);
+
+        Assertions.myAssertTrue(
+                blogsWebPage.isBlogLogoDisplayed(logoSrc),
+                "News is not displayed on website");
+        blogsWebPage
+                .openBlogDetails(logoSrc);
+
+        Assertions.myAssertEquals(
+                blogsWebPage.getBlogContent(),
+                dataModel().Blogs.editContentEN);
+
+        // ====== Control Panel ======
+
+        openAdmin();
+
+        blogsPage = basePage.openBlogs();
+        blogsPage
+                .searchInputs(dataModel().Blogs.editTitleEnglish)
+                .clickSearchResult()
+                .clickEditBlog()
+                .clickDeleteBlog()
+                .clickConfirmDeleteBlog();
+
+        Assertions.myAssertTrue(
+                basePage.isSuccessIconDisplayed(),
+                "Success popup is not displayed correctly"
+        );
 //        Assertions.myAssertEquals(
 //                basePage.getSuccessMessage(),
 //                "Deleted successfully"
 //        );
 //
-//        // ====== Control Panel ======
-//
-//        clientsPage
-//                .closePopUpIcon()
-//                .clearSearchInputs()
-//                .searchInputs(dataModel().Clients.editNameEN);
-//
+        blogsPage
+                .closePopUpIcon()
+                .clearSearchInputs()
+                .searchInputs(dataModel().Blogs.editTitleEnglish);
+
+        Assertions.myAssertTrue(
+                basePage.isNoDataMessageCorrect(),
+                "No data message is not displayed after search"
+        );
+
+        // ====== Website ======
+
+        openWebsite();
+        blogsWebPage = basePage.openBlogsWebsite();
+        blogsWebPage
+                .blogSearchInputs(dataModel().Blogs.editTitleEnglish);;
+
+        Assertions.myAssertTrue(
+                blogsWebPage.isBlogLogoNotDisplayed(logoSrc),
+                "News is still displayed on website ❌");
+
+    }
+    @Test(priority = 2)
+    public void shouldAddEditAndDeleteArticlesSuccessfully(){
+
+    // ====== Control Panel ======
+    blogsPage = basePage.openBlogs();
+    blogsPage
+            .clickAddButton()
+            .enterArabicTitle(dataModel().Blogs.titleArabic)
+            .enterEnglishTitle(dataModel().Blogs.titleEnglish)
+            .selectCategoryTypeDDL(dataModel().Blogs.categoryTypeArticle)
+            .selectCategoryDDL(dataModel().Blogs.category)
+            .enterArabicSections(dataModel().Blogs.sectionsAR)
+            .enterEnglishSections(dataModel().Blogs.sectionsEN)
+            .enterArabicContent(dataModel().Blogs.contentAR)
+            .enterEnglishContent(dataModel().Blogs.contentEN)
+            .enterArabicBrief(dataModel().Blogs.briefAR)
+            .enterEnglishBrief(dataModel().Blogs.briefEN)
+            .uploadImage(System.getProperty("user.dir")+ "/src/test/resources/images/" + dataModel().Blogs.image)
+            .clickPublishBlog()
+            .clickAddBlog();
+
+    Assertions.myAssertTrue(
+            basePage.isSuccessIconDisplayed()
+                    && basePage.isSuccessMessageDisplayed(),
+            "Success popup is not displayed correctly"
+    );
+    Assertions.myAssertEquals(
+            basePage.getSuccessMessage(),
+            "Created successfully"
+    );
+
+    blogsPage
+            .closePopUpIcon()
+            .searchInputs(dataModel().Blogs.titleEnglish);
+
+    Assertions.myAssertEquals(
+            basePage.getTableSearchResult(),
+            dataModel().Blogs.titleEnglish);
+
+    logoSrc = blogsPage.openBlogAndGetLogo();
+
+    // ====== Website ======
+
+    openWebsite();
+    blogsWebPage = basePage.openBlogsWebsite();
+    blogsWebPage
+                .openArticlesTab()
+                .blogSearchInputs(dataModel().Blogs.titleEnglish);
+
+    Assertions.myAssertEquals(
+            blogsWebPage.getBlogTitle(),
+            dataModel().Blogs.titleEnglish);
+
+    Assertions.myAssertTrue(
+            blogsWebPage.isBlogLogoDisplayed(logoSrc),
+            "News is not displayed on website");
+    blogsWebPage
+            .openBlogDetails(logoSrc);
+
+    Assertions.myAssertEquals(
+            blogsWebPage.getBlogContent(),
+            dataModel().Blogs.contentEN);
+
+    // ====== Control Panel ======
+
+    openAdmin();
+
+    blogsPage = basePage.openBlogs();
+    blogsPage
+            .searchInputs(dataModel().Blogs.titleEnglish)
+            .clickSearchResult()
+            .clickEditBlog()
+            .enterArabicTitle(dataModel().Blogs.editTitleArabic)
+            .enterEnglishTitle(dataModel().Blogs.editTitleEnglish)
+            .enterArabicSections(dataModel().Blogs.editSectionsAR)
+            .enterEnglishSections(dataModel().Blogs.editSectionsEN)
+            .enterArabicContent(dataModel().Blogs.editContentAR)
+            .enterEnglishContent(dataModel().Blogs.editContentEN)
+            .enterArabicBrief(dataModel().Blogs.editBriefAR)
+            .enterEnglishBrief(dataModel().Blogs.editBriefEN)
+            .uploadImage(System.getProperty("user.dir")+ "/src/test/resources/images/" + dataModel().Blogs.image)
+            .clickSaveBlog();
+
+    Assertions.myAssertTrue(
+            basePage.isSuccessIconDisplayed()
+                    && basePage.isSuccessMessageDisplayed(),
+            "Success popup is not displayed correctly"
+    );
+    Assertions.myAssertEquals(
+            basePage.getSuccessMessage(),
+            "Updated successfully"
+    );
+
+    blogsPage
+            .closePopUpIcon()
+            .searchInputs(dataModel().Blogs.editTitleEnglish);
+
+    Assertions.myAssertEquals(
+            basePage.getTableSearchResult(),
+            dataModel().Blogs.editTitleEnglish);
+
+    logoSrc = blogsPage.openBlogAndGetLogo();
+
+    // ====== Website ======
+
+    openWebsite();
+    blogsWebPage = basePage.openBlogsWebsite();
+
+    blogsWebPage
+            .openArticlesTab()
+            .blogSearchInputs(dataModel().Blogs.editTitleEnglish);
+
+    Assertions.myAssertEquals(
+            blogsWebPage.getBlogTitle(),
+            dataModel().Blogs.editTitleEnglish);
+
+    Assertions.myAssertTrue(
+            blogsWebPage.isBlogLogoDisplayed(logoSrc),
+            "News is not displayed on website");
+    blogsWebPage
+            .openBlogDetails(logoSrc);
+
+    Assertions.myAssertEquals(
+            blogsWebPage.getBlogContent(),
+            dataModel().Blogs.editContentEN);
+
+    // ====== Control Panel ======
+
+    openAdmin();
+
+    blogsPage = basePage.openBlogs();
+    blogsPage
+            .searchInputs(dataModel().Blogs.editTitleEnglish)
+            .clickSearchResult()
+            .clickEditBlog()
+            .clickDeleteBlog()
+            .clickConfirmDeleteBlog();
+
+    Assertions.myAssertTrue(
+            basePage.isSuccessIconDisplayed(),
+            "Success popup is not displayed correctly"
+    );
 //        Assertions.myAssertEquals(
-//                basePage.getNoDataAvailableMessage(),
-//                "No data available"
+//                basePage.getSuccessMessage(),
+//                "Deleted successfully"
 //        );
 //
-//        // ====== Website ======
-//
-//        openWebsite();
-//        homePage = new HomePage(driver);
-//
-//        Assertions.myAssertTrue(
-//                homePage.isClientLogoNotDisplayed(logoSrc),
-//                "Client is still displayed on website ❌");
-//
-    }
+    blogsPage
+            .closePopUpIcon()
+            .clearSearchInputs()
+            .searchInputs(dataModel().Blogs.editTitleEnglish);
+
+    Assertions.myAssertTrue(
+            basePage.isNoDataMessageCorrect(),
+            "No data message is not displayed after search"
+    );
+
+    // ====== Website ======
+
+    openWebsite();
+    blogsWebPage = basePage.openBlogsWebsite();
+    blogsWebPage
+            .openArticlesTab()
+            .blogSearchInputs(dataModel().Blogs.editTitleEnglish);;
+
+    Assertions.myAssertTrue(
+            blogsWebPage.isBlogLogoNotDisplayed(logoSrc),
+            "News is still displayed on website ❌");
+
+}
 }
