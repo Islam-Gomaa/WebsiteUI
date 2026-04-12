@@ -29,7 +29,7 @@ public class ElementActions {
         return Waits.waitForAllVisible(driver, locator);
     }
 
-    protected boolean isElementDisplayed(By locator) {
+    protected boolean isElementPresent(By locator) {
         try {
             return Waits.waitForVisible(driver, locator).isDisplayed();
         } catch (NoSuchElementException | TimeoutException e) {

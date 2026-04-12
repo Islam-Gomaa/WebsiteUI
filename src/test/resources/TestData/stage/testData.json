@@ -87,6 +87,35 @@
     "editTitleEnglish": "Software Engineering",
     "editDescriptionAR": "قسم محدث يشمل مفاهيم هندسة البرمجيات وأفضل الممارسات.",
     "editDescriptionEN": "Updated category covering software engineering concepts and best practices."
+  },
+  "Products": {
+    "titleArabic": "منصة تحليل البيانات الذكيةauto13",
+    "titleEnglish": "Smart Data Analytics Platform auto13",
+    "category": "Cloud Service",
+    "descriptionAR": "منصة متقدمة لتحليل البيانات توفر أدوات تفاعلية لبناء لوحات معلومات وتقارير ذكية. تُمكن المستخدمين من استكشاف البيانات من مصادر متعددة وتحويلها إلى رؤى قابلة للتنفيذ باستخدام تقنيات الذكاء الاصطناعي.",
+    "descriptionEN": "An advanced data analytics platform that provides interactive tools for building dashboards and smart reports. It enables users to explore data from multiple sources and transform it into actionable insights using AI technologies.",
+    "image": "product-Image.png",
+    "featureTitleArabic": "تقارير تفاعلية",
+    "featureTitleEnglish": "Interactive Reports",
+    "group": "Services",
+    "icon": "product-Icon.svg",
+    "seoTitleArabic": "منصة تحليل البيانات",
+    "seoTitleEnglish": "Data Analytics Platform",
+    "seoDescriptionArabic": "حل متكامل لتحليل البيانات وإنشاء تقارير ولوحات معلومات تفاعلية لدعم اتخاذ القرار.",
+    "seoDescriptionEnglish": "A complete solution for data analytics, enabling interactive dashboards and reporting for better decision-making.",
+    "keywords": "data, analytics, platform, dashboards, AI",
+    "editTitleArabic": "منصة تحليل البيانات المتقدمةAuto3",
+    "editTitleEnglish": "Advanced Data Analytics Platform Auto3",
+    "editDescriptionAR": "منصة متطورة لتحليل البيانات تدعم التكامل مع مصادر متعددة وتوفر أدوات ذكاء اصطناعي لتحسين جودة التحليل.",
+    "editDescriptionEN": "An enhanced analytics platform that supports integration with multiple sources and provides AI-powered tools for improved insights.",
+    "editCategory" : "Customized Services",
+    "editFeatureTitleArabic": "تحليل متكامل",
+    "editFeatureTitleEnglish": "Integrated Analytics",
+    "editGroup": "advantages",
+    "editSeoTitleArabic": "منصة احترافية لتحليل البيانات",
+    "editSeoTitleEnglish": "Professional Data Analytics Platform",
+    "editSeoDescriptionArabic": "منصة احترافية تساعد المؤسسات على تحليل البيانات واتخاذ قرارات دقيقة.",
+    "editSeoDescriptionEnglish": "A professional platform that helps organizations analyze data and make accurate decisions."
   }
 
 }

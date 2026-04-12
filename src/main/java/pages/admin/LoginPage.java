@@ -38,7 +38,7 @@ public class LoginPage extends ElementActions {
 
     @Step("Verify Logo")
     public boolean isLogoDisplayed() {
-        return isElementDisplayed(logo);
+        return isElementPresent(logo);
     }
 
 }

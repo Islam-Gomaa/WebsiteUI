@@ -10,6 +10,7 @@ public class DataModel {
     public Partners Partners;
     public Blogs Blogs;
     public BlogCategories BlogCategories;
+    public Products Products;
 
 
 

@@ -66,7 +66,7 @@ public class CategoryTests extends BaseTests {
         openWebsite();
         servicesAndSolutionsPage = basePage.openServicesAndSolutions();
         Assertions.myAssertTrue(
-                servicesAndSolutionsPage.isCategoryDisplayed(dataModel().Category.titleEn),
+                servicesAndSolutionsPage.isElementDisplayed(servicesAndSolutionsPage::categoryCard,dataModel().Category.titleEn),
                 "Category is not displayed on website");
 
         // ====== Control Panel ======
@@ -108,7 +108,7 @@ public class CategoryTests extends BaseTests {
         openWebsite();
         servicesAndSolutionsPage = basePage.openServicesAndSolutions();
         Assertions.myAssertTrue(
-                servicesAndSolutionsPage.isCategoryDisplayed(dataModel().Category.editTitleEn),
+                servicesAndSolutionsPage.isElementDisplayed(servicesAndSolutionsPage::categoryCard,dataModel().Category.editTitleEn),
                 "Category is not displayed on website");
 
         // ====== Control Panel ======

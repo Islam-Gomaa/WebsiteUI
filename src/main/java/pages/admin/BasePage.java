@@ -22,7 +22,6 @@ public class BasePage<T extends BasePage<T>> extends ElementActions {
     // Locators
     private final By englishBtn = By.cssSelector("[class*='flex items-center']");
     private final By searchInputs =  By.xpath("(//input[@placeholder='Search'])[2]");
-    private final By clearSearchIcon = By.cssSelector(".mdi-close-circle[role='button'][aria-label='Clear']");
     private final By closePopUp = By.cssSelector("button[type='button'][aria-label='Close this dialog']");
     private final By dataTableSearchResult = By.xpath("//tbody[@class='v-data-table__tbody']/tr[1]/td[2]");
     private final By addBtn = By.cssSelector("#teleported-items .flex .v-btn");
@@ -35,6 +34,7 @@ public class BasePage<T extends BasePage<T>> extends ElementActions {
     private final By noDataRow = By.cssSelector("tr.v-data-table-rows-no-data");
 
     // Page's locators
+    // Control Panel
     private final By dataEntry = By.xpath("//span[normalize-space()='Data Entry']");
     private final By featureGroup = By.xpath("//span[normalize-space()='Feature Group']");
     private final By useCases = By.xpath("//span[normalize-space()='Use Cases']");
@@ -44,6 +44,8 @@ public class BasePage<T extends BasePage<T>> extends ElementActions {
     private final By blogs = By.xpath("//span[@class='ms-2 sub_link'][normalize-space()='Blogs'] ");
     private final By subBlogs = By.xpath("//span[@class='ms-3'][normalize-space()='Blogs'] ");
     private final By blogCategories = By.xpath("//span[@class='ms-3'][normalize-space()='Blog Categories'] ");
+    private final By products = By.xpath("//span[normalize-space()='Products']");
+    // Website
     private final By solutionsAndServices = By.cssSelector("a[aria-label='Solutions and Services'][class='link']");
     private final By blogsTab = By.cssSelector("a[aria-label='Blogs'][title=\"Blogs\"][class*='footer-link']");
 
@@ -196,6 +198,12 @@ public class BasePage<T extends BasePage<T>> extends ElementActions {
         click(blogs);
         click(blogCategories);
         return new BlogCategoriesPage(driver);
+    }
+
+    @Step("Open Products Page")
+    public ProductsPage openProducts() {
+        click(products);
+        return new ProductsPage(driver);
     }
 
     // Website pages
