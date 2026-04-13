@@ -45,6 +45,7 @@ public class BasePage<T extends BasePage<T>> extends ElementActions {
     private final By subBlogs = By.xpath("//span[@class='ms-3'][normalize-space()='Blogs'] ");
     private final By blogCategories = By.xpath("//span[@class='ms-3'][normalize-space()='Blog Categories'] ");
     private final By products = By.xpath("//span[normalize-space()='Products']");
+    private final By subscribers =  By.xpath("//span[normalize-space()='Subscribers']");
     // Website
     private final By solutionsAndServices = By.cssSelector("a[aria-label='Solutions and Services'][class='link']");
     private final By blogsTab = By.cssSelector("a[aria-label='Blogs'][title=\"Blogs\"][class*='footer-link']");
@@ -204,6 +205,12 @@ public class BasePage<T extends BasePage<T>> extends ElementActions {
     public ProductsPage openProducts() {
         click(products);
         return new ProductsPage(driver);
+    }
+
+    @Step("Open Subscribers Page")
+    public SubscribesPage openSubscribers() {
+        click(subscribers);
+        return new SubscribesPage(driver);
     }
 
     // Website pages

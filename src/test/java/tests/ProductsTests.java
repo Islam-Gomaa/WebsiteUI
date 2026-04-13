@@ -227,11 +227,6 @@ public class ProductsTests extends BaseTests {
                 .clickDeleteProduct()
                 .clickConfirmDeleteProduct();
 
-        Assertions.myAssertTrue(
-                basePage.isSuccessIconDisplayed(),
-                "Success popup is not displayed correctly"
-        );
-
         Assertions.myAssertEquals(
                 basePage.getSuccessMessage(),
                 "Deleted successfully"

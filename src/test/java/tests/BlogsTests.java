@@ -11,6 +11,7 @@ import utils.Assertions;
 
 import static dataReader.ReadDataFromJson.dataModel;
 
+@Test(groups = "regression")
 public class BlogsTests extends BaseTests {
 
     BasePage basePage;
@@ -25,7 +26,6 @@ public class BlogsTests extends BaseTests {
         openAdmin();
         basePage = AuthHelper.login(driver);
     }
-
     @Test(priority = 1)
     public void shouldAddEditAndDeleteNewsSuccessfully(){
 
@@ -192,7 +192,7 @@ public class BlogsTests extends BaseTests {
                 "News is still displayed on website ❌");
 
     }
-    @Test(priority = 2)
+    @Test(dependsOnMethods = "shouldAddEditAndDeleteNewsSuccessfully")
     public void shouldAddEditAndDeleteArticlesSuccessfully(){
 
     // ====== Control Panel ======

@@ -1,5 +1,7 @@
 package data;
 
+import pages.admin.SubscribesPage;
+
 public class DataModel {
 
     public Login Login;
@@ -11,6 +13,8 @@ public class DataModel {
     public Blogs Blogs;
     public BlogCategories BlogCategories;
     public Products Products;
+    public Subscribes Subscribes;
+
 
 
 
