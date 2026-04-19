@@ -1,20 +1,17 @@
 <suite name="regression">
-<!--    <test name="Add Feature Group">-->
-<!--        <classes>-->
-<!--            <class name="tests.FeatureGroupTests"/>-->
-<!--        </classes>-->
-<!--    </test>-->
 
     <test name="Main Flow">
         <classes>
+<!--            <class name="tests.FeatureGroupTests"/>-->
 <!--            <class name="tests.CategoryTests"/>-->
-            <class name="tests.ProductsTests"/>
+<!--            <class name="tests.ProductsTests"/>-->
 <!--            <class name="tests.UseCasesTests"/>-->
 <!--            <class name="tests.ClientsTests"/>-->
 <!--            <class name="tests.PartnersTests"/>-->
 <!--            <class name="tests.BlogCategoriesTests"/>-->
 <!--            <class name="tests.BlogsTests"/>-->
 <!--            <class name="tests.SubscribersTests"/>-->
+            <class name="tests.ContactUsTests"/>
         </classes>
     </test>
 

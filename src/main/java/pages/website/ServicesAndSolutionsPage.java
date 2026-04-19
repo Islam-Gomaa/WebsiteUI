@@ -73,21 +73,21 @@ public class ServicesAndSolutionsPage extends BasePage<ServicesAndSolutionsPage>
         return new ServicesAndSolutionsPage(driver);
     }
 
-    @Step("Verify main category appeared")
-    public boolean isElementDisplayed(Function<String, By> locatorFunction, String name) {
-        int maxScrolls = 10;
-        for (int i = 0; i < maxScrolls; i++) {
-
-            By locator = locatorFunction.apply(name);
-
-            if (isElementPresent(locator)) {
-                scrollToElement(locator);
-                return true;
-            }
-            scrollBy(0, 500);
-        }
-        return false;
-    }
+//    @Step("Verify main category appeared")
+//    public boolean isElementDisplayed(Function<String, By> locatorFunction, String name) {
+//        int maxScrolls = 10;
+//        for (int i = 0; i < maxScrolls; i++) {
+//
+//            By locator = locatorFunction.apply(name);
+//
+//            if (isElementPresent(locator)) {
+//                scrollToElement(locator);
+//                return true;
+//            }
+//            scrollBy(0, 500);
+//        }
+//        return false;
+//    }
 
     @Step("Verify logo appeared")
     public boolean isImageDisplayed(By locator) {

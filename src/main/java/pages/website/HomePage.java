@@ -4,6 +4,7 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.admin.BasePage;
+import pages.admin.ContactUsPage;
 import pages.admin.DataEntry.PartnersPage;
 
 import java.time.Duration;
@@ -23,6 +24,9 @@ public class HomePage extends BasePage<HomePage> {
         return By.cssSelector(".position-relative [class='v-card-text py-0'] img[src*='" + logoSrc + "']");
     }
 
+    // Contact us
+    private final By contactUsBtn = By.xpath("//div[contains(@class,'contact-us-container')] //a[@href='/contact-us'][.='Contact Us']");
+
     // Locators of subscribes in footer
     private final By subscribeIcon  = By.xpath("//span[@class='v-btn__content']//span[.='Subscribe']");
     private final By subscribeBtn = By.cssSelector(".v-footer .btn-container button[type='submit']");
@@ -31,7 +35,15 @@ public class HomePage extends BasePage<HomePage> {
     private final By subscribeDescription = By.cssSelector(".v-footer .v-container .w-full span[class*='text']");
     private final By subscribedSuccessfullyMessage = By.cssSelector("span[class=snackbar-message]");
 
+
+
     // Fluent setters — each returns `this` so calls can be chained
+
+    @Step("Open ContactUs Website Page")
+    public ContactUsWebPage openContactUsWebsite() {
+        click(contactUsBtn);
+        return new ContactUsWebPage(driver);
+    }
 
     // Logo appeared
     @Step("Verify logo appeared")

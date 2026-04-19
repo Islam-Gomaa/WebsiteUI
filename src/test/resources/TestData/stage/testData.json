@@ -12,7 +12,7 @@
     "editNameEN": "feature_updated"
   },
   "UseCases": {
-    "titleAR":"قطاع النقل والخدمات اللوجستية",
+    "titleAR": "قطاع النقل والخدمات اللوجستية",
     "titleEN": "Transportation and Logistics",
     "contentAR": "توفر واكب حلولاً متقدمة مدعومة بالذكاء الاصطناعي لقطاع النقل والخدمات اللوجستية. تُمكّن هذه الأنظمة الشركات من مراقبة أداء الأسطول،",
     "contentEN": " , and ensure operational efficiency through real-time data analysis.",
@@ -50,7 +50,7 @@
   "Partners": {
     "nameAR": "شريك اختبار",
     "nameEN": "partner_auto created",
-    "field" : "Digital",
+    "field": "Digital",
     "logo": "partnerLogo.png",
     "editNameAR": "شريك معدل",
     "editNameEN": "partner_updated"
@@ -68,7 +68,6 @@
     "briefAR": "مقال يوضح دور الذكاء الاصطناعي في تطوير البرمجيات.",
     "briefEN": "An article explaining the role of AI in software development.",
     "image": "blogImage.png",
-
     "editTitleArabic": "تأثير الذكاء الاصطناعي على تطوير البرمجيات",
     "editTitleEnglish": "Impact of AI on Software Development",
     "editSectionsAR": "أساسيات الذكاء الاصطناعي",
@@ -108,7 +107,7 @@
     "editTitleEnglish": "Advanced Data Analytics Platform Auto7",
     "editDescriptionAR": "منصة متطورة لتحليل البيانات تدعم التكامل مع مصادر متعددة وتوفر أدوات ذكاء اصطناعي لتحسين جودة التحليل.",
     "editDescriptionEN": "An enhanced analytics platform that supports integration with multiple sources and provides AI-powered tools for improved insights.",
-    "editCategory" : "Customized Services",
+    "editCategory": "Customized Services",
     "editFeatureTitleArabic": "تحليل متكامل",
     "editFeatureTitleEnglish": "Integrated Analytics",
     "editGroup": "advantages",
@@ -118,7 +117,15 @@
     "editSeoDescriptionEnglish": "A professional platform that helps organizations analyze data and make accurate decisions."
   },
   "Subscribes": {
-    "email": "autotest1@wakeb.com"
+    "email": "autotest@wakeb.com"
+  },
+  "ContactUs": {
+    "name": "Islam Gomaa",
+    "email": "test.user@wakeb.com",
+    "phone": "0501234567",
+    "requestDDL": "Suggest solution",
+    "requestTypeDDL": "Deep Eye",
+    "subject": "Inquiry about AI Solutions",
+    "message": "I would like to know more details about your AI solutions and services."
   }
-
 }

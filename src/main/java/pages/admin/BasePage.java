@@ -14,6 +14,7 @@ import utilities.ElementActions;
 import utilities.Waits;
 
 import java.util.List;
+import java.util.function.Function;
 
 public class BasePage<T extends BasePage<T>> extends ElementActions {
 
@@ -152,6 +153,23 @@ public class BasePage<T extends BasePage<T>> extends ElementActions {
     public boolean isNoDataMessageCorrect() {
         return Waits.waitForTextToBe(driver, noDataAvailableMessage, "No data available");
     }
+
+    @Step("Verify main category appeared")
+    public boolean isElementDisplayed(Function<String, By> locatorFunction, String name) {
+        int maxScrolls = 10;
+        for (int i = 0; i < maxScrolls; i++) {
+
+            By locator = locatorFunction.apply(name);
+
+            if (isElementPresent(locator)) {
+                scrollToElement(locator);
+                return true;
+            }
+            scrollBy(0, 500);
+        }
+        return false;
+    }
+
     @Step("Open Feature Group Page")
     public FeatureGroupPage openFeatureGroup() {
         click(dataEntry);

@@ -14,6 +14,7 @@ public class DataModel {
     public BlogCategories BlogCategories;
     public Products Products;
     public Subscribes Subscribes;
+    public ContactUs ContactUs ;
 
 
 

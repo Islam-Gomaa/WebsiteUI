@@ -116,6 +116,14 @@ public class ElementActions {
         element.sendKeys(keys);
     }
 
+    protected void sendKeysNormal(By locator, String text) {
+        WebElement element = Waits.waitForVisible(driver, locator);
+        scrollToElement(locator);
+
+        element.clear();
+        element.sendKeys(text);
+    }
+
     protected void sendKeys(By locator, String text) {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         for (int i = 0; i < 3; i++) {
